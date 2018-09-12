@@ -10,3 +10,5 @@ fi
 alias ..='cd ../'
 alias cl='clear'
 alias ls='ls -a -FG'
+alias vgr='vagrant'
+alias chrome='open -a google\ chrome'
