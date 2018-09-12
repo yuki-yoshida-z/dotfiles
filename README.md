@@ -1,9 +1,13 @@
 # dotfiles
 mac用Dotfileリポジトリ
 
-# 準備
-Homebrewのインストール
-neovimのインストールは別途行う
+# 環境構築時に別途行うこと
+- Homebrewのインストール  
+- neovimのインストール
+- ターミナルのカラー設定
+- deinのためにpython3
+- deinの再インストール
+- deinで再度プラグインをinstall
 
 # インストール
 
