@@ -1,2 +1,2 @@
 100
-['/Users/yuki/dotfiles/nvim/dein/', 'Shougo/deoplete.nvim', 'Yggdroot/indentLine', 'bronson/vim-trailing-whitespace', 'mattn/emmet-vim']
+['/Users/yuki/dotfiles/nvim/dein/', 'Shougo/deoplete.nvim', 'Yggdroot/indentLine', 'bronson/vim-trailing-whitespace', 'mattn/emmet-vim', 'slim-template/vim-slim']

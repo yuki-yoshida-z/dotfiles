@@ -17,6 +17,7 @@ if dein#load_state('~/dotfiles/nvim/dein')
   call dein#add('mattn/emmet-vim')
   call dein#add('Yggdroot/indentLine')
   call dein#add('bronson/vim-trailing-whitespace')
+  call dein#add('slim-template/vim-slim')
   call dein#end()
   call dein#save_state()
 endif

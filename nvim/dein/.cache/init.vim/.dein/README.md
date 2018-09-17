@@ -1,118 +1,147 @@
-indentLine
-==========
+# deoplete.nvim
 
-This plugin is used for displaying thin vertical lines at each indentation level for code indented with spaces. For code indented with tabs I think there is no need to support it, because you can use `:set list lcs=tab:\|\ (here is a space)`.
+> Dark powered asynchronous completion framework for neovim/Vim8
 
-## Requirements
-This plugin takes advantage of the newly provided `conceal` feature in Vim 7.3, so this plugin will not work with lower versions of Vim.
+[![Build Status](https://travis-ci.org/Shougo/deoplete.nvim.svg?branch=master)](https://travis-ci.org/Shougo/deoplete.nvim)
+[![Join the chat at https://gitter.im/Shougo/deoplete.nvim](https://badges.gitter.im/Shougo/deoplete.nvim.svg)](https://gitter.im/Shougo/deoplete.nvim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Doc](https://img.shields.io/badge/doc-%3Ah%20deoplete-orange.svg)](doc/deoplete.txt)
 
-## Installation
-To install the plugin just put the plugin files in your `~/.vim` (Linux) or `~/vimfiles` (Windows).
+Deoplete is the abbreviation of "dark powered neo-completion".  It
+provides an extensible and asynchronous completion framework for
+neovim/Vim8.
 
-If you use a plugin manager you can put the whole directory into your `~/.vim/bundle/` directory ([Pathogen][pathogen]) or add the line `Plugin 'Yggdroot/indentLine'` to your `.vimrc` ([Vundle][vundle]).
+deoplete will display completions via `complete()` by default.
 
-## Customization
-To apply customization, apply the variable definitions to your `.vimrc` file.
+Here are some [completion sources](https://github.com/Shougo/deoplete.nvim/wiki/Completion-Sources) specifically made for deoplete.nvim.
 
-**Change Character Color**
+<!-- vim-markdown-toc GFM -->
 
-indentLine will overwrite 'conceal' color with grey by default. If you want to highlight conceal color with your colorscheme, disable by:
-```vim
-let g:indentLine_setColors = 0
+- [Install](#install)
+  - [Requirements](#requirements)
+- [Configuration](#configuration)
+- [Screenshots](#screenshots)
+
+<!-- vim-markdown-toc -->
+
+## Install
+
+**Note:** deoplete requires Neovim (0.2.0+ and of course, **latest** is
+recommended) or Vim8 with Python3 and timers enabled.  See
+[requirements](#requirements) if you aren't sure whether you have this.
+
+For vim-plug
+
+```viml
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 ```
 
-Or you can customize conceal color by: 
-```vim
-" Vim
-let g:indentLine_color_term = 239
+For dein.vim
 
-" GVim
-let g:indentLine_color_gui = '#A4E57E'
-
-" none X terminal
-let g:indentLine_color_tty_light = 7 " (default: 4)
-let g:indentLine_color_dark = 1 " (default: 2)
-
-" Background (Vim, GVim)
-let g:indentLine_bgcolor_term = 202
-let g:indentLine_bgcolor_gui = '#FF5F00'
+```viml
+call dein#add('Shougo/deoplete.nvim')
+if !has('nvim')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
+endif
+let g:deoplete#enable_at_startup = 1
 ```
 
-**Change Indent Char**
+For manual installation(not recommended)
 
-Vim and GVim
+1. Extract the files and put them in your Neovim or .vim directory
+   (usually `$XDG_CONFIG_HOME/nvim/`).
+
+2. Write `call deoplete#enable()` or `let g:deoplete#enable_at_startup = 1` in
+   your `init.vim`
+
+### Requirements
+
+deoplete requires Neovim or Vim8 with `if_python3`.
+
+If `:echo has("python3")` returns `1`, then you have python 3 support; otherwise, see below.
+
+You can enable Python3 interface with pip:
+
+    pip3 install neovim
+
+Please install nvim-yarp and vim-hug-neovim-rpc for Vim8.
+
+- <https://github.com/roxma/nvim-yarp>
+- <https://github.com/roxma/vim-hug-neovim-rpc>
+
+**Note: Python3 must be enabled before updating remote plugins**
+
+If Deoplete was installed prior to Python support being added to Neovim,
+`:UpdateRemotePlugins` should be executed manually in order to enable
+auto-completion.
+
+**Note: deoplete needs neovim-python ver.0.2.4+.**
+
+You need update neovim-python module.
+
+    pip3 install --upgrade neovim
+
+If you want to read the Neovim-python/python3 interface install documentation,
+you should read `:help provider-python` and the Wiki.
+<https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim>
+
+## Configuration
+
 ```vim
-let g:indentLine_char = 'c'
-```
-where `'c'` can be any ASCII character. You can also use one of `¦`, `┆`, `│`, `⎸`, or `▏` to display more beautiful lines. However, these characters will only work with files whose encoding is UTF-8.
-
-**Change Conceal Behaviour**
-
-This plugin enables the Vim `conceal` feature which automatically hides stretches of text based on syntax highlighting. This setting will apply to all syntax items.
-
-For example, users utilizing the built in json.vim syntax file will no longer see quotation marks in their JSON files.
-
-indentLine will overwrite your "concealcursor" and "conceallevel" with default value:
-
-```vim
-let g:indentLine_concealcursor = 'inc'
-let g:indentLine_conceallevel = 2
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 ```
 
-You can customize these settings, but the plugin will not function if `conceallevel` is not set to 1 or 2.
-
-If you want to keep your conceal setting, put this line to your vim dotfile:
-```vim
-let g:indentLine_setConceal = 0
-```
-
-See the [VIM Reference Manual](http://vimdoc.sourceforge.net/htmldoc/version7.html#new-conceal) for more information on the `conceal` feature.
-
-
-**Disable by default**
-```vim
-let g:indentLine_enabled = 0
-```
-
-### Commands
-`:IndentLinesToggle` toggles lines on and off.
-
-### Font patching
-If you find all the standard unicode and ASCII characters too obtrusive, you might consider patching your font with the [indentLine-dotted-guide.eps][glyph] glyph provided.  [FontForge][fontforge] makes the process amazingly simple:
-
- 1. Download and install FontForge.
- 2. Locate and open your terminal/gVim font.
- 3. Open the font in FontForge, choose __Goto__ from the __View__ menu and select _Private Use Area_ from the drop down box.
- 4. In the private use area, locate a blank spot for the glyph. Make a note of the code, e.g. `U+E0A3`.
- 5. Double-click the selected code point to open the font drawing tool.
- 6. From the __File__ menu, select __Import...__ and locate the _indentLine-dotted-guide.eps_ file.
- 7. Once imported, choose __File__ -> __Generate Fonts__ and choose a location and file type for the new font.
-
-Once completed, your new font will contain the more subtle dotted guide and all you have to do is set that glyph to `g:indentLine_char` in your `.vimrc` file.
-
-[glyph]: glyph/indentLine-dotted-guide.eps
-[fontforge]: http://fontforge.github.io/
-
-## Self promotion
-If you think this script is helpful, follow the [GitHub repository][repository], and don't forget to vote for it on Vim.org! ([vimscript #4354][script]).
-
-[pathogen]: https://github.com/tpope/vim-pathogen
-[vundle]: https://github.com/gmarik/vundle
-[repository]: https://github.com/Yggdroot/indentLine
-[script]: http://www.vim.org/scripts/script.php?script_id=4354
+See `:help deoplete-options` for a complete list of options.
 
 ## Screenshots
 
-### Vertical bars
-![Screenshot](http://i.imgur.com/KVi0T.jpg)
+Deoplete for JavaScript
+<https://www.youtube.com/watch?v=oanoPTpiSF4>
 
-### Patched font
-![Screenshot](http://i.imgur.com/2ZA7oaZ.png)
+![File Name Completion](https://cloud.githubusercontent.com/assets/7141867/11717027/a99cac54-9f73-11e5-91ce-bce9274692e4.png)
 
-### Leading Spaces
-![Screenshot](http://i.imgur.com/tLYkb79.png)
+![Omni Completion](https://cloud.githubusercontent.com/assets/7141867/11717030/ae809a28-9f73-11e5-8c12-79fe9c460401.png)
 
-![Screenshot](http://i.imgur.com/07Atrrs.png)
+![Neosnippets and neco-ghc integration](https://cloud.githubusercontent.com/assets/7141867/11717032/b4159c0e-9f73-11e5-91ee-404e6390366a.png)
 
-## License
-- MIT
+![deoplete + echodoc integration](https://github.com/archSeer/nvim-elixir/blob/master/autocomplete.gif)
+
+![deoplete + deoplete-go integration](https://camo.githubusercontent.com/cfdefba43971bd44d466ead357bb296e38d7f88c/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f6c344b6930316d30314939424f485745302f67697068792e676966)
+
+![deoplete + deoplete-typescript integration](https://github.com/mhartington/deoplete-typescript/blob/master/deoplete-tss.gif)
+
+![Python completion using deoplete-jedi](https://cloud.githubusercontent.com/assets/3712731/17458493/8e10d1c0-5c44-11e6-8bd9-964f45365962.gif)
+
+![C++ completion using clang_complete](https://cloud.githubusercontent.com/assets/3712731/17458501/cf88f89e-5c44-11e6-89a4-b4646aaa8021.gif)
+
+![Java completion using vim-javacomplete2](https://cloud.githubusercontent.com/assets/3712731/17458504/f075e76a-5c44-11e6-97d5-c5525f61c4a9.gif)
+
+![Vim Script completion using neco-vim](https://cloud.githubusercontent.com/assets/3712731/17461000/660e15be-5caf-11e6-8c02-eb9f9c169f3c.gif)
+
+![C# completion using deoplete-omnisharp](https://camo.githubusercontent.com/f429dc72f91b25619980dbb9d436065ba3fb0a44/68747470733a2f2f692e696d6775722e636f6d2f464e634c4441752e676966)
+
+![Register/Extract list completions](https://camo.githubusercontent.com/6a6df993ad0e05c014c72c8f8702447f9b34ad90/68747470733a2f2f692e696d6775722e636f6d2f5131663731744a2e676966)
+
+![FSharp completion using deopletefs](https://github.com/callmekohei/deoplete-fsharp/blob/master/pic/sample.gif)
+
+![Typescript](https://user-images.githubusercontent.com/29815830/36537450-bfbf4884-1802-11e8-8ad4-dd4a0dccfed3.png)
+
+![Javascript](https://user-images.githubusercontent.com/29815830/36537514-ef01ef7a-1802-11e8-944e-c33017dfbe2b.png)
+
+![Css, scss, sass](https://user-images.githubusercontent.com/29815830/36537545-1184f10a-1803-11e8-81a1-097222a58752.png)
+
+![Html](https://user-images.githubusercontent.com/29815830/36537602-40b19848-1803-11e8-8ac8-49b3b9ba2094.png)
+
+![My custom snippets](https://user-images.githubusercontent.com/29815830/36537646-6578262e-1803-11e8-9bff-64874a606150.png)
+
+![C++ with cquery lang server](https://user-images.githubusercontent.com/1750795/38780762-7c74e51e-40a9-11e8-92f9-dee921555865.png)
+
+![Rust using rls](https://user-images.githubusercontent.com/1750795/38780764-8524b0b8-40a9-11e8-91bc-6e4148c398a3.png)
