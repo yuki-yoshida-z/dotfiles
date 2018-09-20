@@ -20,7 +20,7 @@ if dein#load_state('~/dotfiles/nvim/dein')
   call dein#add('slim-template/vim-slim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('cohama/lexima.vim')
-:46  call dein#end()
+  call dein#end()
   call dein#save_state()
 endif
 
