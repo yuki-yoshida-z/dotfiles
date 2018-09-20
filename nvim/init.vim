@@ -18,7 +18,9 @@ if dein#load_state('~/dotfiles/nvim/dein')
   call dein#add('Yggdroot/indentLine')
   call dein#add('bronson/vim-trailing-whitespace')
   call dein#add('slim-template/vim-slim')
-  call dein#end()
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('cohama/lexima.vim')
+:46  call dein#end()
   call dein#save_state()
 endif
 
@@ -40,6 +42,13 @@ set expandtab
 set list
 "set listchars=eol:↲
 set listchars=eol:↲,extends:»,precedes:«,nbsp:%,space:-
+set noshowmode
+augroup MyXML
+  autocmd!
+  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
+augroup END
 colorscheme molokai
 syntax on
 
