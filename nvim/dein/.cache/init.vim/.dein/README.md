@@ -1,389 +1,118 @@
-# lightline.vim
-A light and configurable statusline/tabline plugin for Vim
+indentLine
+==========
 
-https://github.com/itchyny/lightline.vim
+This plugin is used for displaying thin vertical lines at each indentation level for code indented with spaces. For code indented with tabs I think there is no need to support it, because you can use `:set list lcs=tab:\|\ (here is a space)`.
 
-### powerline (default)
-
-![lightline.vim - powerline](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/powerline.png)
-
-### wombat
-
-![lightline.vim - wombat](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/wombat.png)
-
-### jellybeans
-
-![lightline.vim - jellybeans](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/jellybeans.png)
-
-### solarized dark
-
-![lightline.vim - solarized_dark](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/solarized_dark.png)
-
-### solarized light
-
-![lightline.vim - solarized_light](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/solarized_light.png)
-
-### PaperColor light
-
-![lightline.vim - PaperColor](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/PaperColor.png)
-
-### seoul256
-
-![lightline.vim - seoul256](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/seoul256.png)
-
-### one
-
-![lightline.vim - one](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/one.png)
-
-### landscape
-
-![lightline.vim - landscape](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/landscape.png)
-
-landscape is my colorscheme, which is a high-contrast cterm-supported colorscheme, available at https://github.com/itchyny/landscape.vim
-
-## Why yet another clone of powerline?
-+ [vim-powerline](https://github.com/Lokaltog/vim-powerline) is a nice plugin, but deprecated.
-+ [powerline](https://github.com/powerline/powerline) is a nice plugin, but difficult to configure.
-+ [vim-airline](https://github.com/vim-airline/vim-airline) is a nice plugin, but it uses too much functions of other plugins, which should be done by users in `.vimrc`.
-
-## Spirit of this plugin
-+ Minimalism. The core script is very small to achieve enough functions as a statusline plugin.
-+ Configurability. You can create your own component and easily add to the statusline and the tabline.
-+ Orthogonality. The plugin does not rely on the implementation of other plugins. Such plugin crossing settings should be configured by users.
+## Requirements
+This plugin takes advantage of the newly provided `conceal` feature in Vim 7.3, so this plugin will not work with lower versions of Vim.
 
 ## Installation
-### [Pathogen](https://github.com/tpope/vim-pathogen)
-1. Install with the following command.
+To install the plugin just put the plugin files in your `~/.vim` (Linux) or `~/vimfiles` (Windows).
 
-        git clone https://github.com/itchyny/lightline.vim ~/.vim/bundle/lightline.vim
+If you use a plugin manager you can put the whole directory into your `~/.vim/bundle/` directory ([Pathogen][pathogen]) or add the line `Plugin 'Yggdroot/indentLine'` to your `.vimrc` ([Vundle][vundle]).
 
-### [Vundle](https://github.com/VundleVim/Vundle.vim)
-1. Add the following configuration to your `.vimrc`.
+## Customization
+To apply customization, apply the variable definitions to your `.vimrc` file.
 
-        Plugin 'itchyny/lightline.vim'
+**Change Character Color**
 
-2. Install with `:PluginInstall`.
-
-### [NeoBundle](https://github.com/Shougo/neobundle.vim)
-1. Add the following configuration to your `.vimrc`.
-
-        NeoBundle 'itchyny/lightline.vim'
-
-2. Install with `:NeoBundleInstall`.
-
-### [vim-plug](https://github.com/junegunn/vim-plug)
-1. Add the following configuration to your `.vimrc`.
-
-        Plug 'itchyny/lightline.vim'
-
-2. Install with `:PlugInstall`.
-
-## Introduction
-After installing this plugin, you restart the editor and will get a cool statusline.
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/1.png)
-
-The color of the statusline changes due to the mode of Vim. Try typing something, selecting in visual mode and replacing some texts.
-
-If the statusline looks like
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/21.png)
-
-add the following configuration to your `.vimrc`.
+indentLine will overwrite 'conceal' color with grey by default. If you want to highlight conceal color with your colorscheme, disable by:
 ```vim
-set laststatus=2
+let g:indentLine_setColors = 0
 ```
 
-If the statusline is not coloured like
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/20.png)
-
-then modify `TERM` in your shell configuration (`.zshrc` for example)
-```sh
-export TERM=xterm-256color
-```
-and then add the following configure to your `.vimrc`.
+Or you can customize conceal color by: 
 ```vim
-if !has('gui_running')
-  set t_Co=256
-endif
+" Vim
+let g:indentLine_color_term = 239
+
+" GVim
+let g:indentLine_color_gui = '#A4E57E'
+
+" none X terminal
+let g:indentLine_color_tty_light = 7 " (default: 4)
+let g:indentLine_color_dark = 1 " (default: 2)
+
+" Background (Vim, GVim)
+let g:indentLine_bgcolor_term = 202
+let g:indentLine_bgcolor_gui = '#FF5F00'
 ```
 
-Your statusline appears to work correctly? If yes, great, thanks for choosing lightline.vim! If no, please file an issue report to the [issue tracker](https://github.com/itchyny/lightline.vim/issues).
+**Change Indent Char**
 
-By the way, `-- INSERT --` is unnecessary anymore because the mode information is displayed in the statusline.
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/13.png)
-If you want to get rid of it, configure as follows.
+Vim and GVim
 ```vim
-set noshowmode
+let g:indentLine_char = 'c'
 ```
+where `'c'` can be any ASCII character. You can also use one of `¦`, `┆`, `│`, `⎸`, or `▏` to display more beautiful lines. However, these characters will only work with files whose encoding is UTF-8.
 
-## Colorscheme configuration
-The lightline.vim plugin provides multiple colorschemes to meet your editor colorscheme.
-Do not be confused, editor colorscheme rules how codes look like in buffers and lightline.vim has independent colorscheme feature, which rules how the statusline looks like.
+**Change Conceal Behaviour**
 
-If you are using wombat colorscheme, add the following setting to your `.vimrc`,
+This plugin enables the Vim `conceal` feature which automatically hides stretches of text based on syntax highlighting. This setting will apply to all syntax items.
+
+For example, users utilizing the built in json.vim syntax file will no longer see quotation marks in their JSON files.
+
+indentLine will overwrite your "concealcursor" and "conceallevel" with default value:
+
 ```vim
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
+let g:indentLine_concealcursor = 'inc'
+let g:indentLine_conceallevel = 2
 ```
-restart Vim and the statusline looks like:
 
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/2.png)
+You can customize these settings, but the plugin will not function if `conceallevel` is not set to 1 or 2.
 
-If the colors of the statusline do not change, move the settings of `g:lightline` before setting the editor colorscheme.
-
-There are many lightline colorschemes available as screenshots shown above. See `:h g:lightline.colorscheme` for the complete list.
-
-## Advanced configuration
-The default appearance of lightline.vim is carefully designed that the tutorial is enough here for most people.
-So please read this section if you really want to configure and enjoy the configurability of lightline.vim.
-
-Sometimes people want to display information of other plugins.
-For example git branch information, syntax check errors and some statuses of plugins.
-
-The lightline.vim plugin does not provide any plugin integration by default.
-This plugin considers orthogonality to be one of the important ideas, which means that the plugin does not rely on implementation of other plugins.
-Once a plugin starts to integrate with some famous plugins, it should be kept updated to follow the changes of the plugins, and should accept integration requests with new plugins and it will suffer from performance regression due to plugin availability checks.
-
-Instead, lightline.vim provides a simple API that user can easily integrate with other plugins.
-Once you understand how to configure and how it will be displayed in the statusline, you can also tell how to integrate with your favorite plugins.
-
-Let's start to configure the appearance.
-The statusline is composed by multiple components.
-It shows the current mode, filename, modified status on the left, and file format, encoding, filetype and cursor positions on the right.
-So in order to add something in the statusline, you firstly create a new component and specify the place.
-
-This is the hello world of lightline.vim component.
+If you want to keep your conceal setting, put this line to your vim dotfile:
 ```vim
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ]
-      \ },
-      \ 'component': {
-      \   'helloworld': 'Hello, world!'
-      \ },
-      \ }
+let g:indentLine_setConceal = 0
 ```
-The statusline will look like:
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/3.png)
 
-You have succeeded in displaying `Hello, world!` in the statusline.
-The `helloworld` component is added to `g:lightline.active.left` and its content is configured in `g:lightline.component`.
-The component contents are simply added to `&statusline`.
-Try `:echo &statusline`, it might be a little bit complicated, but you will find `Hello, world!` somewhere.
+See the [VIM Reference Manual](http://vimdoc.sourceforge.net/htmldoc/version7.html#new-conceal) for more information on the `conceal` feature.
 
-You can use `'statusline'` syntax for lightline.vim components.
-Consult `:h 'statusline'` to see what's available here.
-For example, if you want to print the value of character under the cursor in hexadecimal, configure as
+
+**Disable by default**
 ```vim
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'charvaluehex' ] ]
-      \ },
-      \ 'component': {
-      \   'charvaluehex': '0x%B'
-      \ },
-      \ }
+let g:indentLine_enabled = 0
 ```
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/4.png)
 
-You want the character value information on the right hand side? OK, configure as
-```vim
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
-      \ },
-      \ 'component': {
-      \   'charvaluehex': '0x%B'
-      \ },
-      \ }
-```
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/5.png)
+### Commands
+`:IndentLinesToggle` toggles lines on and off.
 
-We have learned how to add a simple component.
+### Font patching
+If you find all the standard unicode and ASCII characters too obtrusive, you might consider patching your font with the [indentLine-dotted-guide.eps][glyph] glyph provided.  [FontForge][fontforge] makes the process amazingly simple:
 
-- See `:h 'statusline'` to check the statusline flags.
-- Add a new component to `g:lightline.component`.
-- Add the component name to `g:lightline.active.left` or `g:lightline.active.right`.
+ 1. Download and install FontForge.
+ 2. Locate and open your terminal/gVim font.
+ 3. Open the font in FontForge, choose __Goto__ from the __View__ menu and select _Private Use Area_ from the drop down box.
+ 4. In the private use area, locate a blank spot for the glyph. Make a note of the code, e.g. `U+E0A3`.
+ 5. Double-click the selected code point to open the font drawing tool.
+ 6. From the __File__ menu, select __Import...__ and locate the _indentLine-dotted-guide.eps_ file.
+ 7. Once imported, choose __File__ -> __Generate Fonts__ and choose a location and file type for the new font.
 
-You can also configure the statusline of inactive buffers by adding the component to `g:lightline.inactive.left` or `g:lightline.inactive.right`.
+Once completed, your new font will contain the more subtle dotted guide and all you have to do is set that glyph to `g:indentLine_char` in your `.vimrc` file.
 
+[glyph]: glyph/indentLine-dotted-guide.eps
+[fontforge]: http://fontforge.github.io/
 
-Now let's add some integrations with other plugin.
-The name of the git branch is important these days.
-But lightline.vim does not provide this information by default because it is also one of plugin crossing configurations, and not all people want the integration.
+## Self promotion
+If you think this script is helpful, follow the [GitHub repository][repository], and don't forget to vote for it on Vim.org! ([vimscript #4354][script]).
 
-In order to show the branch name in the statusline, install some plugins which provides the branch information.
-The [vim-fugitive](https://github.com/tpope/vim-fugitive) plugin is a famous plugin so let's integrate lightline.vim with it.
-If you don't like to install full git integration but just want to display the branch name in the statusline, you can use the [vim-gitbranch](https://github.com/itchyny/vim-gitbranch) plugin which provides `gitbranch#name` function.
-```vim
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
-```
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/6.png)
+[pathogen]: https://github.com/tpope/vim-pathogen
+[vundle]: https://github.com/gmarik/vundle
+[repository]: https://github.com/Yggdroot/indentLine
+[script]: http://www.vim.org/scripts/script.php?script_id=4354
 
-Okay, now the statusline shows that we are coding at the master branch.
-What do we learn from this example?
+## Screenshots
 
-- Find out the function which is suitable to use in the statusline.
-- Create a function component. The previous `charvaluehex` component has `'statusline'` item configuration and registered in `g:lightline.component`. In the current example, we register the name of the function in `g:lightline.component_function`. It should return the string to be displayed in the statusline.
-- Add the component name `gitbranch` to `g:lightline.active.left` or `g:lightline.active.right`.
+### Vertical bars
+![Screenshot](http://i.imgur.com/KVi0T.jpg)
 
+### Patched font
+![Screenshot](http://i.imgur.com/2ZA7oaZ.png)
 
-Here we have leaned two kinds of components.
+### Leading Spaces
+![Screenshot](http://i.imgur.com/tLYkb79.png)
 
-- component: it has a `%`-prefixed item which you can find the meaning at `:h 'statusline'`. All the default components of lightline.vim are components in this style. See the default components at `:h g:lightline.component`.
-- function component: the name of functions are registered. The function is called again and again so be careful not to register a heavy function. See the help with `:h g:lightline.component_function`.
-
-
-The function component is an important design for the configurability of lightline.vim.
-By providing the configuration interface via functions, you can adjust the statusline information as you wish.
-For the proof, let's look into some configuration examples in Q&amp;A style.
-
-### Can I hide the readonly component in the help buffer?
-Yes, create a function component for `readonly`.
-The configuration of function component has priority over the default component.
-```vim
-let g:lightline = {
-      \ 'component_function': {
-      \   'readonly': 'LightlineReadonly',
-      \ },
-      \ }
-
-function! LightlineReadonly()
-  return &readonly && &filetype !=# 'help' ? 'RO' : ''
-endfunction
-```
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/7.png)
-
-### Can I hide the readonly component in other plugins buffer?
-Yes, modify the `LightlineReadonly` function as you wish.
-```vim
-function! LightlineReadonly()
-  return &readonly && &filetype !~# '\v(help|vimfiler|unite)' ? 'RO' : ''
-endfunction
-
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
-```
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/8.png)
-
-### Can I display the plugin information at the filename component?
-Yes, overwrite the filename component.
-```vim
-let g:lightline = {
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \ },
-      \ }
-
-function! LightlineFilename()
-  return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
-        \ &filetype ==# 'unite' ? unite#get_status_string() :
-        \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
-        \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-endfunction
-
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
-let g:vimshell_force_overwrite_statusline = 0
-```
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/9.png)
-
-### Can I display the plugin name at the mode component?
-Yes, overwrite the mode component.
-```vim
-let g:lightline = {
-      \ 'component_function': {
-      \   'mode': 'LightlineMode',
-      \ },
-      \ }
-
-function! LightlineMode()
-  return expand('%:t') ==# '__Tagbar__' ? 'Tagbar':
-        \ expand('%:t') ==# 'ControlP' ? 'CtrlP' :
-        \ &filetype ==# 'unite' ? 'Unite' :
-        \ &filetype ==# 'vimfiler' ? 'VimFiler' :
-        \ &filetype ==# 'vimshell' ? 'VimShell' :
-        \ lightline#mode()
-endfunction
-```
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/10.png)
-
-### Can I trim the file format and encoding information on narrow windows?
-Yes, check `winwidth(0)` and return empty string with some threshold.
-```vim
-let g:lightline = {
-      \ 'component_function': {
-      \   'fileformat': 'LightlineFileformat',
-      \   'filetype': 'LightlineFiletype',
-      \ },
-      \ }
-
-function! LightlineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! LightlineFiletype()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
-```
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/11.png)
-
-### Can I trim the bar between the filename and modified sign?
-Yes, by joining the two components.
-```vim
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename' ] ],
-      \ },
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \ },
-      \ }
-
-function! LightlineFilename()
-  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  let modified = &modified ? ' +' : ''
-  return filename . modified
-endfunction
-```
-![lightline.vim - tutorial](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/tutorial/12.png)
-
-You can control the visibility and contents by writing simple functions.
-Now you notice how much function component is important for the configurability of lightline.vim.
-
-## Note for developers of other plugins
-Appearance consistency matters.
-
-The statusline is an important space for Vim users.
-Overwriting the statusline forcibly in your plugin is not a good idea.
-It is not hospitality, but just an annoying feature.
-If your plugin has such a feature, add an option to be modest.
-
-A good design is as follows.
-Firstly, give the users a clue to judge which buffer is the one your plugin creates.
-The filename is a manner and the filetype is another.
-Then, export a function which is useful to be shown in the statusline.
-Lastly, for advanced users, set important information in buffer variables so that the users can obtain the condition of the plugin easily.
-
-## Author
-itchyny (https://github.com/itchyny)
+![Screenshot](http://i.imgur.com/07Atrrs.png)
 
 ## License
-This software is released under the MIT License, see LICENSE.
+- MIT

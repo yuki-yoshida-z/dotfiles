@@ -20,6 +20,7 @@ if dein#load_state('~/dotfiles/nvim/dein')
   call dein#add('slim-template/vim-slim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('cohama/lexima.vim')
+  call dein#add('scrooloose/nerdtree')
   call dein#end()
   call dein#save_state()
 endif
@@ -43,6 +44,8 @@ set list
 "set listchars=eol:↲
 set listchars=eol:↲,extends:»,precedes:«,nbsp:%,space:-
 set noshowmode
+map <C-e> :NERDTreeToggle<CR>
+let NERDTreeShowLineNumbers=1
 augroup MyXML
   autocmd!
   autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
