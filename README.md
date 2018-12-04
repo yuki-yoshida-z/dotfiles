@@ -8,6 +8,8 @@ mac用Dotfileリポジトリ。
 - Gitコマンドのalias
 - neovimの設定
 - vimの設定
+- screenの設定
+- Dockerのalias
 
 ## 開発環境導入の大まかな手順
 1. Homebrewのインストール 
