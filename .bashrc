@@ -12,3 +12,9 @@ alias cl='clear'
 alias ls='ls -a -FG'
 alias vgr='vagrant'
 alias chrome='open -a google\ chrome'
+#Docker-alias
+alias doc='docker'
+alias dcom='docker-compose'
+alias dcweb='docker-compose exec web'
+#For Rails on root
+alias tail='tail -n 30 -f log/development.log'
