@@ -1,3 +1,6 @@
+*tcomment.txt*  An easily extensible & universal comment plugin
+                Author: Thomas Link, micathom AT gmail com?subject=vim
+
 tcomment provides easy to use, file-type sensible comments for Vim. It 
 can handle embedded syntax.
 
@@ -140,9 +143,4 @@ NOTE: On Windows, ~/.vim might be ~/vimfiles. Please see 'runtimepath' for
 details.
 
 
-
-
-
-License: GPLv3 or later
-
-
+%s

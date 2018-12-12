@@ -21,6 +21,7 @@ if dein#load_state('~/dotfiles/nvim/dein')
   call dein#add('itchyny/lightline.vim')
   call dein#add('cohama/lexima.vim')
   call dein#add('scrooloose/nerdtree')
+  call dein#add('tomtom/tcomment_vim')
   call dein#end()
   call dein#save_state()
 endif
@@ -42,7 +43,7 @@ set shiftwidth=2
 set expandtab
 set list
 "set listchars=eol:↲
-set listchars=eol:↲,extends:»,precedes:«,nbsp:%,space:-
+set listchars=eol:↲,extends:»,precedes:«,nbsp:%
 set noshowmode
 map <C-e> :NERDTreeToggle<CR>
 let NERDTreeShowLineNumbers=1
