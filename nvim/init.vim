@@ -22,6 +22,8 @@ if dein#load_state('~/dotfiles/nvim/dein')
   call dein#add('cohama/lexima.vim')
   call dein#add('scrooloose/nerdtree')
   call dein#add('tomtom/tcomment_vim')
+  call dein#add('posva/vim-vue')
+  call dein#add('leafOfTree/vim-vue-plugin')
   call dein#end()
   call dein#save_state()
 endif
