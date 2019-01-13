@@ -55,6 +55,7 @@ augroup MyXML
   autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
   autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
+  autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
 augroup END
 colorscheme molokai
 syntax on
