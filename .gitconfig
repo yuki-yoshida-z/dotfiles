@@ -1,8 +1,0 @@
-[user]
-	name = yuki-yoshida-z
-	email = yoshida_y@zihuatanejo.jp
-[alias]
-	st = status
-	br = branch
-	co = checkout
-	cmt = commit -m
