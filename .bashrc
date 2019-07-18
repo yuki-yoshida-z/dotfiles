@@ -18,6 +18,7 @@ alias chrome='open -a google\ chrome'
 #Docker-alias
 alias doc='docker'
 alias dcom='docker-compose'
+alias dsy='docker-sync'
 alias dcweb='docker-compose exec web'
 #For Rails on root
 alias tail='tail -n 30 -f log/development.log'
