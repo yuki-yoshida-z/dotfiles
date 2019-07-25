@@ -25,6 +25,7 @@ if dein#load_state('~/dotfiles/nvim/dein')
   call dein#add('posva/vim-vue')
   call dein#add('leafOfTree/vim-vue-plugin')
   call dein#add('leafgarland/typescript-vim')
+  call dein#add('kchmck/vim-coffee-script')
   call dein#end()
   call dein#save_state()
 endif
