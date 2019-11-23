@@ -1,0 +1,50 @@
+# ===== 機能関連 =====
+# ステータスラインのカラーリング
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+# ディレクトリ表示
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+
+# ===== 整形関連 =====
+# インデントを可視化
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+# 行末のスペースを可視化
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+
+# コメントアウトの効率化
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
+
+
+# ===== コーディング効率関連 =====
+# 入力補完
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = 'let g:deoplete#enable_at_startup = 1'
+
+# 閉じ括弧補完
+[[plugins]]
+repo = 'cohama/lexima.vim'
+
+
+# ===== シンタックス関連 =====
+[[plugins]]
+repo = 'slim-template/vim-slim'
+
+[[plugins]]
+repo = 'posva/vim-vue'
+
+[[plugins]]
+repo = 'leafOfTree/vim-vue-plugin'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
