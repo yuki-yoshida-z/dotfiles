@@ -48,3 +48,9 @@ repo = 'leafgarland/typescript-vim'
 
 [[plugins]]
 repo = 'kchmck/vim-coffee-script'
+
+[[plugins]]
+repo = 'digitaltoad/vim-pug'
+
+[[plugins]]
+repo = 'wavded/vim-stylus'
