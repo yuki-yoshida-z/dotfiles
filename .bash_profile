@@ -9,3 +9,4 @@ fi
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
 export PATH
+export BASH_SILENCE_DEPRECATION_WARNING=1
