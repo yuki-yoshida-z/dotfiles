@@ -1,4 +1,4 @@
-export PATH=$PATH:/Users/yuki/.nodebrew/current/bin
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 # rbenvのpath設定
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH="$HOME/.rbenv/bin:$PATH"
