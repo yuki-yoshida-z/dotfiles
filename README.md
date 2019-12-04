@@ -8,11 +8,11 @@ mac用Dotfileリポジトリ。
 - Gitコマンドのalias
 - neovimの設定
 - vimの設定
-- screenの設定
 - Dockerのalias
 
 ## 開発環境導入の大まかな手順
 1. Homebrewのインストール 
+1. anyenvのインストール
 1. ターミナルのカラー設定
 1. ターミナルのフォント設定 
 1. neovimのインストール
@@ -29,19 +29,92 @@ mac用Dotfileリポジトリ。
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
+### anyenvのインストール
+各言語のバージョンを一括管理する
+開発環境導入時では最低限のものを入れる
+1. nodenv(vue cliなど使う想定)
+1. pyenv(nvimのdeopleteで使用)
+
+[anyenv github](https://github.com/anyenv/anyenv)
+
+#### インストール
+```
+$ brew install anyenv
+```
+```
+$ anyenv install --init
+Manifest directory doesn't exist: /Users/[your_account]/.config/anyenv/anyenv-install
+Do you want to checkout ? [y/N]: y #質問にはyで答える
+<中略>
+
+#シェル更新
+$ exec $SHELL -l
+
+#最初は何もないはずだがインストールの確認
+$ anyenv versions
+
+```
+
+#### anyenvプラグインのインストール
+```
+# ディレクトリ作成
+$ mkdir -p ~/.anyenv/plugins
+
+# anyenv-update
+# anyenv updateコマンドでanyenvで入れた**env系の全てをアップデートしてくれるプラグイン
+$ git clone https://github.com/znz/anyenv-update.git ~/.anyenv/plugins/anyenv-update
+
+# anyenv-git
+# anyenv gitコマンドでanyenvで入れた**env系の全てのgitコマンドを実行するプラグイン
+$ git clone https://github.com/znz/anyenv-git.git ~/.anyenv/plugins/anyenv-git
+```
+
+#### nodenvとpyenvのインストール
+```
+$ anyenv install nodenv
+
+$ anyenv install pyenv
+
+$ exec $SHELL -l
+```
+
+#### nvim用にpython3系をインストール
+```
+# インストール可能なバージョンのリスト
+$ pyenv install -l
+
+#上記結果から3系の最新をインストール
+$ pyenv install 3.x.x
+
+$ exec $SHELL -l
+```
+
+#### node.jsの最新をインストール
+```
+# インストール可能なバージョンのリスト
+$ nodenv install -l
+
+#上記結果から3系の最新をインストール
+$ nodenv install 3.x.x
+
+$ exec $SHELL -l
+```
+
 ### ターミナルのカラー設定
 Proを使用。  
 不透明度は95%に設定する。
 ### ターミナルのフォント設定
 Ricty Diminishedを使用。  
-[Ricty Diminished](https://www.rs.tus.ac.jp/yyusa/ricty.html)
+[Ricty Diminished github](https://github.com/edihbrandon/RictyDiminished)
 
-```
-brew tap caskroom/fonts
-brew cask install font-ricty-diminished
-```
+1. githubからソースをダウンロードと解凍
+1. macでfont Bookを起動
+1. 左メニューのユーザーをクリック
+1. フォントリスト欄を右クリックしてフォントを追加
+1. ダウンロードしたファイルを選択
+
 インストール後にターミナル環境設定から  
-**Ricty Diminished Regular 18pt.**  
+**Ricty Diminished Regular 14pt.**  
 を選択。
 
 ### neovimのインストール
@@ -51,9 +124,8 @@ brew cask install font-ricty-diminished
 brew install neovim
 ```
 
-### deinのためにpython3をインストール
+### deinにpython3をインストール
 ```
-brew install python3
 pip3 install -U neovim
 ```
 
@@ -73,26 +145,6 @@ ls
 ### シェル実行
 ```
 sh dotfiles.sh
-```
-
-### deinの再インストール
-[dein](https://github.com/Shougo/dein.vim)  
-すでにdeinはnvimの設定の中に含まれているが、  
-なぜか動かない。  
-原因を探すより、再インストールした方が早いため再インストールする。  
-
-暇ができたら原因を探す。  
-
-既存のdeinを削除
-```
-cd ~/dotfiles/nvim
-rm -rf dein
-```
-
-deinの再インストール
-```
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-sh ./installer.sh ~/dotfiles/nvim/dein
 ```
 
 ### deinでnvimのプラグインをinstall
