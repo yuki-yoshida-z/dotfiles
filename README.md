@@ -124,7 +124,7 @@ Ricty Diminishedを使用。
 brew install neovim
 ```
 
-### deinにpython3をインストール
+### dein用にpython3をインストール
 ```
 pip3 install -U neovim
 ```
@@ -146,7 +146,12 @@ ls
 ```
 sh dotfiles.sh
 ```
-
+### deinのインストール
+```
+cd ~/dotfiles/nvim
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+sh ./installer.sh ~/.config/nvim/dein
+```
 ### deinでnvimのプラグインをinstall
 nvim起動
 ```
