@@ -17,6 +17,9 @@ mac用Dotfileリポジトリ。
 1. ターミナルのフォント設定 
 1. neovimのインストール
 1. deinのためにpython3をインストール
+1. fzfのインストール
+1. ripgrepのインストール
+1. batのインストール
 1. 本リポジトリをクローン
 1. シェル実行
 1. deinの再インストール
@@ -127,6 +130,23 @@ brew install neovim
 ### dein用にpython3をインストール
 ```
 pip3 install -U neovim
+```
+
+### fzfのインストール
+```
+brew install fzf
+
+(brew --prefix)/opt/fzf/install
+```
+
+###  ripgrepのインストール
+```
+brew install ripgrep
+```
+
+###  batのインストール
+```
+brew install bat
 ```
 
 ### 本リポジトリをクローン
