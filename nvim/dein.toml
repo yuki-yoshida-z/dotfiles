@@ -23,6 +23,14 @@ repo = 'tomtom/tcomment_vim'
 
 
 # ===== コーディング効率関連 =====
+# ファイル検索
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+
 # 入力補完
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
