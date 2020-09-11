@@ -13,6 +13,13 @@ alias chrome='open -a google\ chrome'
 # fzf alias
 alias fzff='rg --files --hidden --no-ignore-vcs -g "!{node_modules,.git,dist}" | fzf --height 50% --layout=reverse --border --inline-info --preview "bat --style=numbers --color=always --line-range :200 {}"'
 alias nvimf='nvim $(fzff)'
+# 選択したディレクトリに移動
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
 
 #Docker-alias
 alias doc='docker'
