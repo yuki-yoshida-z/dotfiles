@@ -44,6 +44,8 @@ set list "不可視文字を可視化
 set listchars=eol:↲,extends:»,precedes:«,nbsp:% "不可視文字の表示設定
 
 map <C-e> :NERDTreeToggle<CR>
+map <C-k> :Files<CR>
+map <C-j> :Rg<CR>
 let NERDTreeShowLineNumbers=1
 
 augroup MyXML
