@@ -46,6 +46,9 @@ repo = 'cohama/lexima.vim'
 repo = 'slim-template/vim-slim'
 
 [[plugins]]
+repo = 'MaxMEllon/vim-jsx-pretty'
+
+[[plugins]]
 repo = 'posva/vim-vue'
 
 [[plugins]]
