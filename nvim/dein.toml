@@ -62,3 +62,6 @@ repo = 'digitaltoad/vim-pug'
 
 [[plugins]]
 repo = 'wavded/vim-stylus'
+
+[[plugins]]
+repo = 'chr4/nginx.vim'
