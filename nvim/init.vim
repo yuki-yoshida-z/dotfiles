@@ -42,6 +42,7 @@ set shiftwidth=2 "インデントの幅
 set expandtab "タブをスペース化
 set list "不可視文字を可視化
 set listchars=eol:↲,extends:»,precedes:«,nbsp:% "不可視文字の表示設定
+set nrformats= "０の前置きに関わらず加減算を十進数に
 
 map <C-e> :NERDTreeToggle<CR>
 map <C-k> :Files<CR>
