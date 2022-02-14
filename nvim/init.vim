@@ -49,6 +49,7 @@ map <C-k> :Files<CR>
 map <C-j> :Rg<CR>
 let NERDTreeShowLineNumbers=1
 let g:fzf_layout = { 'down': '40%' }
+let g:blamer_enabled = 1
 augroup MyXML
   autocmd!
   autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>

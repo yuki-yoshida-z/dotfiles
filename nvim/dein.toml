@@ -7,6 +7,10 @@ repo = 'itchyny/lightline.vim'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
+# git blame表示
+[[plugins]]
+repo = 'APZelos/blamer.nvim'
+
 
 # ===== 整形関連 =====
 # インデントを可視化
