@@ -42,18 +42,21 @@ set shiftwidth=2 "インデントの幅
 set expandtab "タブをスペース化
 set list "不可視文字を可視化
 set listchars=eol:↲,extends:»,precedes:«,nbsp:% "不可視文字の表示設定
+set nrformats= "０の前置きに関わらず加減算を十進数に
 
 map <C-e> :NERDTreeToggle<CR>
 map <C-k> :Files<CR>
 map <C-j> :Rg<CR>
 let NERDTreeShowLineNumbers=1
-
+let g:fzf_layout = { 'down': '40%' }
+let g:blamer_enabled = 1
 augroup MyXML
   autocmd!
   autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
   autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
   autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
+  autocmd BufNewFile,BufRead *.es6 set filetype=javascript
 augroup END
 
 colorscheme molokai
