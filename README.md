@@ -72,11 +72,13 @@ $ git clone https://github.com/znz/anyenv-update.git ~/.anyenv/plugins/anyenv-up
 $ git clone https://github.com/znz/anyenv-git.git ~/.anyenv/plugins/anyenv-git
 ```
 
-#### nodenvとpyenvのインストール
+#### nodenvとpyenvとrbenvのインストール
 ```
 $ anyenv install nodenv
 
 $ anyenv install pyenv
+
+$ anyenv install rbenv
 
 $ exec $SHELL -l
 ```
@@ -92,16 +94,28 @@ $ pyenv install 3.x.x
 $ exec $SHELL -l
 ```
 
-#### node.jsの最新をインストール
+#### LSPに使用するnode.jsのバージョンをインストール
 ```
 # インストール可能なバージョンのリスト
 $ nodenv install -l
 
-#上記結果から3系の最新をインストール
-$ nodenv install 3.x.x
+#上記結果からlspで使用したいバージョンをインストール
+$ nodenv install x.x.x
 
 $ exec $SHELL -l
 ```
+
+#### LSPに使用するrubyのバージョンをインストール
+```
+# インストール可能なバージョンのリスト
+$ rbenv install -l
+
+#上記結果からlspで使用したいバージョンをインストール
+$ rbenv  install x.x.x
+
+$ exec $SHELL -l
+```
+
 
 ### ターミナルのカラー設定
 Proを使用。  

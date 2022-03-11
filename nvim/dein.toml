@@ -1,3 +1,4 @@
+
 # ===== 機能関連 =====
 # ステータスラインのカラーリング
 [[plugins]]
@@ -35,11 +36,6 @@ build = './install --all'
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 
-# 入力補完
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = 'let g:deoplete#enable_at_startup = 1'
-
 # 閉じ括弧補完
 [[plugins]]
 repo = 'cohama/lexima.vim'
@@ -72,3 +68,9 @@ repo = 'wavded/vim-stylus'
 
 [[plugins]]
 repo = 'chr4/nginx.vim'
+
+
+# ===== LSP =====
+repo = 'neoclide/coc.nvim'
+merged = 0
+rev = 'release'
