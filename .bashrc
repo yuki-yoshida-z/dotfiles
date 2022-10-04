@@ -23,9 +23,8 @@ fd() {
 
 #Docker-alias
 alias doc='docker'
-alias dcom='docker-compose'
+alias dcom='docker compose'
 alias dsy='docker-sync'
-alias dcweb='docker-compose exec web'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export PATH="/opt/homebrew/bin:$PATH"
