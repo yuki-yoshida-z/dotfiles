@@ -48,6 +48,8 @@ map <C-e> :NERDTreeToggle<CR>
 map <C-k> :Files<CR>
 map <C-j> :Rg<CR>
 let NERDTreeShowLineNumbers=1
+" NOTE: neovim 0.8.0からの不具合。パッチ的に当てている
+let g:NERDTreeMinimalMenu=1
 let g:fzf_layout = { 'down': '40%' }
 let g:blamer_enabled = 1
 augroup MyXML
