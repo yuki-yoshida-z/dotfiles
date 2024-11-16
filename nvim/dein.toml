@@ -74,3 +74,8 @@ repo = 'chr4/nginx.vim'
 repo = 'neoclide/coc.nvim'
 merged = 0
 rev = 'release'
+
+
+# ===== copilot =====
+[[plugins]]
+repo = 'github/copilot.vim'

@@ -2,10 +2,11 @@ if &compatible
   set nocompatible
 endif
 " Add the dein installation directory into runtimepath
-set runtimepath+=~/dotfiles/nvim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('~/dotfiles/nvim/dein')
-  call dein#begin('~/dotfiles/nvim/dein')
+
+ if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
 
   let g:rc_dir    = expand("~/.config/nvim/")
   let s:toml      = g:rc_dir . '/dein.toml'
@@ -16,7 +17,7 @@ if dein#load_state('~/dotfiles/nvim/dein')
 
   call dein#end()
   call dein#save_state()
-endif
+ endif
 
 if dein#check_install()
   call dein#install()
@@ -63,4 +64,3 @@ augroup END
 
 colorscheme molokai
 syntax on
-
