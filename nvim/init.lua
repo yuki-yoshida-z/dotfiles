@@ -78,7 +78,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-  -- ===== 機能関連 =====
   -- ステータスラインのカラーリング
   { "itchyny/lightline.vim" },
 
@@ -88,8 +87,6 @@ require("lazy").setup({
   -- git blame表示
   { "APZelos/blamer.nvim" },
 
-
-  -- ===== 整形関連 =====
   -- インデントを可視化
   { "Yggdroot/indentLine" },
 
@@ -99,8 +96,6 @@ require("lazy").setup({
   -- コメントアウトの効率化
   { "tomtom/tcomment_vim" },
 
-
-  -- ===== コーディング効率関連 =====
   -- ファイル検索 (fzf 本体)
   { "junegunn/fzf", build = "./install --all" },
 
@@ -110,8 +105,7 @@ require("lazy").setup({
   -- 閉じ括弧補完
   { "cohama/lexima.vim" },
 
-
-  -- ===== シンタックス関連 =====
+  -- シンタックス関連
   { "slim-template/vim-slim" },
   { "MaxMEllon/vim-jsx-pretty" },
   { "posva/vim-vue" },
@@ -121,4 +115,45 @@ require("lazy").setup({
   { "wavded/vim-stylus" },
   { "chr4/nginx.vim" },
 
+  -- LSP 基盤
+  { "neovim/nvim-lspconfig" },
+
+  -- LSP 補完エンジン
+  { "hrsh7th/nvim-cmp" },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-path" },
+  { "hrsh7th/cmp-cmdline" }
+
+})
+
+-- LSP 設定
+local lspconfig = require("lspconfig")
+
+-- Ruby (Solargraph)
+lspconfig.solargraph.setup{}
+
+-- JavaScript / TypeScript
+lspconfig.ts_ls.setup{}
+
+-- HTML, CSS
+lspconfig.html.setup{}
+lspconfig.cssls.setup{}
+
+-- nvim-cmp
+local cmp = require("cmp")
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+  }),
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    { name = "buffer" },
+  })
 })
