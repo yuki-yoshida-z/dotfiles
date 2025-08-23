@@ -31,10 +31,15 @@ vim.opt.listchars = { eol = "↲", extends = "»", precedes = "«", nbsp = "%" }
 -- 数値フォーマット
 vim.opt.nrformats = {}
 
+-- Leader をスペースに設定
+vim.g.mapleader = " "
+
 -- キーマッピング
 vim.keymap.set("n", "<C-e>", ":NERDTreeToggle<CR>", { silent = true })
 vim.keymap.set("n", "<C-k>", ":Files<CR>", { silent = true })
 vim.keymap.set("n", "<C-j>", ":Rg<CR>", { silent = true })
+vim.keymap.set("n", "<Leader>a", ":AvanteToggle<CR>", { silent = true })
+vim.keymap.set("n", "<Leader>s", ":AvanteAsk<CR>", { silent = true })
 
 -- プラグイン設定
 vim.g.NERDTreeShowLineNumbers = 1
@@ -123,8 +128,25 @@ require("lazy").setup({
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-path" },
-  { "hrsh7th/cmp-cmdline" }
+  { "hrsh7th/cmp-cmdline" },
 
+  -- Avante
+  {
+    "yetone/avante.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = { file_types = { "Avante" } },
+        ft = { "Avante" },
+      },
+    },
+    build = "make",
+    opts = { provider = "copilot" }
+  }
 })
 
 -- LSP 設定
