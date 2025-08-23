@@ -3,60 +3,31 @@ mac用Dotfileリポジトリ。
 開発環境構築時の効率化が目的。   
 随時更新の予定。
 
-## インストール後に入手できるもの
+## インストール後に設定されるもの
 - linuxコマンドのalias
 - Gitコマンドのalias
+- Dockerコマンドのalias
 - neovimの設定
-- vimの設定
-- Dockerのalias
 
 ## 開発環境導入の大まかな手順
-1. Homebrewのインストール 
+1. Homebrewのインストール
 1. anyenvのインストール
 1. ターミナルのカラー設定
-1. ターミナルのフォント設定 
-1. neovimのインストール
-1. deinのためにpython3をインストール
+1. ターミナルのフォント設定
 1. fzfのインストール
 1. ripgrepのインストール
 1. batのインストール
+1. neovimのインストール
 1. 本リポジトリをクローン
 1. シェル実行
-1. deinの再インストール
-1. deinでnvimのプラグインをinstall
 
-## 導入詳細
+## 環境構築までに必要なパッケージ
+各公式ドキュメントを参照してインストールする
 ### Homebrewのインストール
 [Homebrewサイト](https://brew.sh/index_ja)
-```
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
 
 ### anyenvのインストール
-各言語のバージョンを一括管理する
-開発環境導入時では最低限のものを入れる
-1. nodenv(vue cliなど使う想定)
-1. pyenv(nvimのdeopleteで使用)
-
 [anyenv github](https://github.com/anyenv/anyenv)
-
-#### インストール
-```
-$ brew install anyenv
-```
-```
-$ anyenv install --init
-Manifest directory doesn't exist: /Users/[your_account]/.config/anyenv/anyenv-install
-Do you want to checkout ? [y/N]: y #質問にはyで答える
-<中略>
-
-#シェル更新
-$ exec $SHELL -l
-
-#最初は何もないはずだがインストールの確認
-$ anyenv versions
-
-```
 
 #### anyenvプラグインのインストール
 ```
@@ -71,51 +42,6 @@ $ git clone https://github.com/znz/anyenv-update.git ~/.anyenv/plugins/anyenv-up
 # anyenv gitコマンドでanyenvで入れた**env系の全てのgitコマンドを実行するプラグイン
 $ git clone https://github.com/znz/anyenv-git.git ~/.anyenv/plugins/anyenv-git
 ```
-
-#### nodenvとpyenvとrbenvのインストール
-```
-$ anyenv install nodenv
-
-$ anyenv install pyenv
-
-$ anyenv install rbenv
-
-$ exec $SHELL -l
-```
-
-#### nvim用にpython3系をインストール
-```
-# インストール可能なバージョンのリスト
-$ pyenv install -l
-
-#上記結果から3系の最新をインストール
-$ pyenv install 3.x.x
-
-$ exec $SHELL -l
-```
-
-#### LSPに使用するnode.jsのバージョンをインストール
-```
-# インストール可能なバージョンのリスト
-$ nodenv install -l
-
-#上記結果からlspで使用したいバージョンをインストール
-$ nodenv install x.x.x
-
-$ exec $SHELL -l
-```
-
-#### LSPに使用するrubyのバージョンをインストール
-```
-# インストール可能なバージョンのリスト
-$ rbenv install -l
-
-#上記結果からlspで使用したいバージョンをインストール
-$ rbenv  install x.x.x
-
-$ exec $SHELL -l
-```
-
 
 ### ターミナルのカラー設定
 Proを使用。  
@@ -134,18 +60,6 @@ Ricty Diminishedを使用。
 **Ricty Diminished Regular 14pt.**  
 を選択。
 
-### neovimのインストール
-[neovim公式](https://neovim.io/)  
-[neovim git](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-```
-brew install neovim
-```
-
-### dein用にpython3をインストール
-```
-pip3 install -U neovim
-```
-
 ### fzfのインストール
 ```
 brew install fzf
@@ -162,38 +76,15 @@ brew install ripgrep
 ```
 brew install bat
 ```
+### neovimのインストール
+[neovim公式](https://neovim.io/)  
+[neovim git](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+```
+brew install neovim
+```
 
-### 本リポジトリをクローン
-
-```
-cd ~/
-git clone https://github.com/yuki-yoshida-z/dotfiles.git
-```
-確認
-```
-cd dotfiles
-ls
-```
-色々ファイルがあればok。
-
-### シェル実行
+## Dotfilesの適用
+上記のパッケージをインストール後に以下を実装
 ```
 sh dotfiles.sh
 ```
-### deinのインストール
-```
-cd ~/dotfiles/nvim
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-sh ./installer.sh ~/.config/nvim/dein
-```
-### deinでnvimのプラグインをinstall
-nvim起動
-```
-nvim
-```
-プラグインのインストール
-```
-:call dein#install()
-```
-
-
