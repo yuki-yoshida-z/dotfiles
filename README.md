@@ -47,19 +47,11 @@ $ git clone https://github.com/znz/anyenv-git.git ~/.anyenv/plugins/anyenv-git
 Proを使用。  
 不透明度は95%に設定する。
 ### ターミナルのフォント設定
-Ricty Diminishedを使用。  
-[Ricty Diminished github](https://github.com/edihbrandon/RictyDiminished)
+font-jetbrains-mono-nerd-fontをinstallしてターミナルの設定でフォントを選択する
 
-1. githubからソースをダウンロードと解凍
-1. macでfont Bookを起動
-1. 左メニューのユーザーをクリック
-1. フォントリスト欄を右クリックしてフォントを追加
-1. ダウンロードしたファイルを選択
-
-インストール後にターミナル環境設定から  
-**Ricty Diminished Regular 14pt.**  
-を選択。
-
+```
+brew install --cask font-jetbrains-mono-nerd-font
+```
 ### fzfのインストール
 ```
 brew install fzf
@@ -82,6 +74,8 @@ brew install bat
 ```
 brew install neovim
 ```
+#### copilotの設定
+nvim上で:Copilot setupを実行し、GitHubの認証を行う
 
 ## Dotfilesの適用
 上記のパッケージをインストール後に以下を実装
