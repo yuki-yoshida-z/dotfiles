@@ -130,6 +130,9 @@ require("lazy").setup({
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
 
+  -- Copilot
+  { "github/copilot.vim" },
+
   -- Avante
   {
     "yetone/avante.nvim",
