@@ -77,6 +77,9 @@ brew install neovim
 #### copilotの設定
 nvim上で:Copilot setupを実行し、GitHubの認証を行う
 
+#### geminiのAPI keyを環境変数に設定
+.bashrcのGEMINI_API_KEYの箇所
+
 ## Dotfilesの適用
 上記のパッケージをインストール後に以下を実装
 ```

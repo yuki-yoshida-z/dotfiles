@@ -148,7 +148,18 @@ require("lazy").setup({
       },
     },
     build = "make",
-    opts = { provider = "copilot" }
+    config = function()
+      require("avante").setup({
+        provider = "gemini",
+        providers = {
+          gemini = {
+            api_key = os.getenv("GEMINI_API_KEY"),
+            endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+            model = "gemini-2.0-flash"
+          },
+        },
+      })
+    end
   }
 })
 
