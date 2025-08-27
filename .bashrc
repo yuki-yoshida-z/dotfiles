@@ -30,3 +30,4 @@ alias dsy='docker-sync'
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/opt/unzip/bin:$PATH"
 export GEMINI_API_KEY=""
+export ANTHROPIC_API_KEY=""

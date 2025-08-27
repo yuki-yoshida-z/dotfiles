@@ -43,6 +43,7 @@ vim.keymap.set("n", "<Leader>s", ":AvanteAsk<CR>", { silent = true })
 vim.keymap.set("n", "<leader>cl", "<cmd>AvanteSwitchProvider claude<cr>", { desc = "Switch to Claude" })
 vim.keymap.set("n", "<leader>ge", "<cmd>AvanteSwitchProvider gemini<cr>", { desc = "Switch to Gemini" })
 vim.keymap.set("n", "<leader>cle", "<cmd>AvanteClear<cr>", { desc = "AvanteClear executed" })
+
 -- プラグイン設定
 vim.g.NERDTreeShowLineNumbers = 1
 vim.g.NERDTreeMinimalMenu = 1   -- Neovim 0.8.0 の不具合対策
@@ -172,7 +173,7 @@ require("lazy").setup({
               max_tokens = 4096
             }
           }
-        },
+        }
       })
     end
   }
