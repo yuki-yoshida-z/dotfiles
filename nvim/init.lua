@@ -40,7 +40,9 @@ vim.keymap.set("n", "<C-k>", ":Files<CR>", { silent = true })
 vim.keymap.set("n", "<C-j>", ":Rg<CR>", { silent = true })
 vim.keymap.set("n", "<Leader>a", ":AvanteToggle<CR>", { silent = true })
 vim.keymap.set("n", "<Leader>s", ":AvanteAsk<CR>", { silent = true })
-
+vim.keymap.set("n", "<leader>cl", "<cmd>AvanteSwitchProvider claude<cr>", { desc = "Switch to Claude" })
+vim.keymap.set("n", "<leader>ge", "<cmd>AvanteSwitchProvider gemini<cr>", { desc = "Switch to Gemini" })
+vim.keymap.set("n", "<leader>cle", "<cmd>AvanteClear<cr>", { desc = "AvanteClear executed" })
 -- プラグイン設定
 vim.g.NERDTreeShowLineNumbers = 1
 vim.g.NERDTreeMinimalMenu = 1   -- Neovim 0.8.0 の不具合対策
@@ -157,6 +159,19 @@ require("lazy").setup({
             endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
             model = "gemini-2.0-flash"
           },
+          claude = {
+            name = "claude",
+            endpoint = "https://api.anthropic.com",
+            api_key = os.getenv("ANTHROPIC_API_KEY"),
+            model = "claude-3-haiku-20240307",
+            headers = {
+              ["anthropic-version"] = "2023-06-01",
+            },
+            extra_request_body = {
+              temperature = 0.2,
+              max_tokens = 4096
+            }
+          }
         },
       })
     end
