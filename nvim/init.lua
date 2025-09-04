@@ -106,7 +106,11 @@ require("lazy").setup({
   { "APZelos/blamer.nvim" },
 
   -- インデントを可視化
-  { "Yggdroot/indentLine" },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {},
+  },
 
   -- 行末のスペースを可視化
   { "bronson/vim-trailing-whitespace" },
@@ -183,6 +187,7 @@ require("lazy").setup({
 vim.g.sonokai_transparent_background = false
 vim.cmd("colorscheme sonokai")
 
+require("ibl").setup()
 -- LSP 設定
 local lspconfig = require("lspconfig")
 lspconfig.solargraph.setup{}
