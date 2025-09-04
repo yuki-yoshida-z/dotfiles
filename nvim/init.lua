@@ -153,6 +153,8 @@ require("lazy").setup({
     build = "make",
     config = function()
       require("avante").setup({
+        -- providerは各端末毎に設定すること
+        -- provider = "copilot",
         provider = "gemini",
         providers = {
           gemini = {
