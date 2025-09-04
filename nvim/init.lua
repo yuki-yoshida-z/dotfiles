@@ -97,7 +97,10 @@ require("lazy").setup({
   },
 
   -- ステータスラインのカラーリング
-  { "itchyny/lightline.vim" },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 
   -- ディレクトリ表示
   { "scrooloose/nerdtree" },
@@ -106,13 +109,17 @@ require("lazy").setup({
   { "APZelos/blamer.nvim" },
 
   -- インデントを可視化
-  { "Yggdroot/indentLine" },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {},
+  },
 
   -- 行末のスペースを可視化
   { "bronson/vim-trailing-whitespace" },
 
   -- コメントアウトの効率化
-  { "tomtom/tcomment_vim" },
+  { "numToStr/Comment.nvim" },
 
   -- ファイル検索 (fzf 本体)
   { "junegunn/fzf", build = "./install --all" },
@@ -180,8 +187,16 @@ require("lazy").setup({
     end
   }
 })
-
+vim.g.sonokai_transparent_background = false
 vim.cmd("colorscheme sonokai")
+
+require('lualine').setup({
+  options = { theme  = 'molokai' }
+})
+
+require("ibl").setup()
+
+require('Comment').setup()
 
 -- LSP 設定
 local lspconfig = require("lspconfig")
