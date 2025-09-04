@@ -1,5 +1,7 @@
 -- init.lua
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 -- ファイルタイプ/インデント/シンタックス
 vim.cmd("filetype plugin indent on")
 vim.cmd("syntax enable")
@@ -35,9 +37,9 @@ vim.opt.nrformats = {}
 vim.g.mapleader = " "
 
 -- キーマッピング
-vim.keymap.set("n", "<C-e>", ":NERDTreeToggle<CR>", { silent = true })
 vim.keymap.set("n", "<C-k>", ":Files<CR>", { silent = true })
 vim.keymap.set("n", "<C-j>", ":Rg<CR>", { silent = true })
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "nvim-tree: Toggle" })
 vim.keymap.set("n", "<Leader>a", ":AvanteToggle<CR>", { silent = true })
 vim.keymap.set("n", "<Leader>s", ":AvanteAsk<CR>", { silent = true })
 vim.keymap.set("n", "<leader>cl", "<cmd>AvanteSwitchProvider claude<cr>", { desc = "Switch to Claude" })
@@ -45,8 +47,6 @@ vim.keymap.set("n", "<leader>ge", "<cmd>AvanteSwitchProvider gemini<cr>", { desc
 vim.keymap.set("n", "<leader>cle", "<cmd>AvanteClear<cr>", { desc = "AvanteClear executed" })
 
 -- プラグイン設定
-vim.g.NERDTreeShowLineNumbers = 1
-vim.g.NERDTreeMinimalMenu = 1   -- Neovim 0.8.0 の不具合対策
 vim.g.fzf_layout = { down = "40%" }
 vim.g.blamer_enabled = 1
 
@@ -65,6 +65,16 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   command = "set filetype=ruby",
 })
 
+-- nvim-treeのカラーカスタマイズ
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "NvimTreeFolderIcon", { fg = "#E6DB74" })
+    vim.api.nvim_set_hl(0, "NvimTreeOpenedFolderIcon", { fg = "#A6E22E" })
+    vim.api.nvim_set_hl(0, "NvimTreeGitDirty", { fg = "#F92672" })
+    vim.api.nvim_set_hl(0, "NvimTreeGitNew", { fg = "#A6E22E" })
+  end,
+})
 -- lazy.nvim bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -103,7 +113,10 @@ require("lazy").setup({
   },
 
   -- ディレクトリ表示
-  { "scrooloose/nerdtree" },
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" }
+  },
 
   -- git blame表示
   { "APZelos/blamer.nvim" },
@@ -193,11 +206,22 @@ vim.cmd("colorscheme sonokai")
 require('lualine').setup({
   options = { theme  = 'molokai' }
 })
-
 require("ibl").setup()
-
 require('Comment').setup()
-
+require("nvim-tree").setup({
+  -- netrwを完全に無効化（重要）
+  disable_netrw = true,
+  hijack_netrw = true,
+  -- カーソルハイジャック無効化（パフォーマンス向上）
+  hijack_cursor = false,
+  -- ディレクトリ変更時の動作
+  sync_root_with_cwd = true,
+  respect_buf_cwd = true,
+  update_focused_file = {
+    enable = true,
+    update_root = false,
+  },
+})
 -- LSP 設定
 local lspconfig = require("lspconfig")
 lspconfig.solargraph.setup{}
