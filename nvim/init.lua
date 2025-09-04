@@ -97,7 +97,10 @@ require("lazy").setup({
   },
 
   -- ステータスラインのカラーリング
-  { "itchyny/lightline.vim" },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 
   -- ディレクトリ表示
   { "scrooloose/nerdtree" },
@@ -187,7 +190,12 @@ require("lazy").setup({
 vim.g.sonokai_transparent_background = false
 vim.cmd("colorscheme sonokai")
 
+require('lualine').setup({
+  options = { theme  = 'molokai' }
+})
+
 require("ibl").setup()
+
 -- LSP 設定
 local lspconfig = require("lspconfig")
 lspconfig.solargraph.setup{}
