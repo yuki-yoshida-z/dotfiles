@@ -15,8 +15,8 @@ vim.opt.cursorcolumn = true        -- カーソル列ハイライト
 vim.opt.virtualedit = "onemore"    -- 行末の1文字先まで移動可
 
 -- インデント
-vim.opt.smartindent = true
-vim.opt.autoindent = true
+vim.opt.smartindent = false
+vim.opt.autoindent = false
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
@@ -40,6 +40,9 @@ vim.keymap.set("n", "<C-k>", ":Files<CR>", { silent = true })
 vim.keymap.set("n", "<C-j>", ":Rg<CR>", { silent = true })
 vim.keymap.set("n", "<Leader>a", ":AvanteToggle<CR>", { silent = true })
 vim.keymap.set("n", "<Leader>s", ":AvanteAsk<CR>", { silent = true })
+vim.keymap.set("n", "<leader>cl", "<cmd>AvanteSwitchProvider claude<cr>", { desc = "Switch to Claude" })
+vim.keymap.set("n", "<leader>ge", "<cmd>AvanteSwitchProvider gemini<cr>", { desc = "Switch to Gemini" })
+vim.keymap.set("n", "<leader>cle", "<cmd>AvanteClear<cr>", { desc = "AvanteClear executed" })
 
 -- プラグイン設定
 vim.g.NERDTreeShowLineNumbers = 1
@@ -61,14 +64,6 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*.jbuilder",
   command = "set filetype=ruby",
 })
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  group = "MyXML",
-  pattern = "*.es6",
-  command = "set filetype=javascript",
-})
-
--- カラースキーム
-vim.cmd("colorscheme molokai")
 
 -- lazy.nvim bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -82,6 +77,24 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+
+  -- カラースキーマ
+  { 'sainnhe/sonokai' },
+
+  -- シンタックス関連
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "lua", "ruby", "javascript", "typescript", "html", "css", "vue", "bash", "go", "java", "json", "yaml", "markdown", "nginx", "pug", "python", "scala", "scss", "slim", "sql", "terraform", "xml"
+       },
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
+    end
+  },
 
   -- ステータスラインのカラーリング
   { "itchyny/lightline.vim" },
@@ -109,16 +122,6 @@ require("lazy").setup({
 
   -- 閉じ括弧補完
   { "cohama/lexima.vim" },
-
-  -- シンタックス関連
-  { "slim-template/vim-slim" },
-  { "MaxMEllon/vim-jsx-pretty" },
-  { "posva/vim-vue" },
-  { "leafOfTree/vim-vue-plugin" },
-  { "leafgarland/typescript-vim" },
-  { "digitaltoad/vim-pug" },
-  { "wavded/vim-stylus" },
-  { "chr4/nginx.vim" },
 
   -- LSP 基盤
   { "neovim/nvim-lspconfig" },
@@ -150,6 +153,8 @@ require("lazy").setup({
     build = "make",
     config = function()
       require("avante").setup({
+        -- providerは各端末毎に設定すること
+        -- provider = "copilot",
         provider = "gemini",
         providers = {
           gemini = {
@@ -157,24 +162,34 @@ require("lazy").setup({
             endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
             model = "gemini-2.0-flash"
           },
-        },
+          claude = {
+            name = "claude",
+            endpoint = "https://api.anthropic.com",
+            api_key = os.getenv("ANTHROPIC_API_KEY"),
+            model = "claude-3-haiku-20240307",
+            headers = {
+              ["anthropic-version"] = "2023-06-01",
+            },
+            extra_request_body = {
+              temperature = 0.2,
+              max_tokens = 4096
+            }
+          }
+        }
       })
     end
   }
 })
 
+vim.cmd("colorscheme sonokai")
+
 -- LSP 設定
 local lspconfig = require("lspconfig")
-
--- Ruby (Solargraph)
 lspconfig.solargraph.setup{}
-
--- JavaScript / TypeScript
 lspconfig.ts_ls.setup{}
-
--- HTML, CSS
 lspconfig.html.setup{}
 lspconfig.cssls.setup{}
+lspconfig.terraformls.setup{}
 
 -- nvim-cmp
 local cmp = require("cmp")
