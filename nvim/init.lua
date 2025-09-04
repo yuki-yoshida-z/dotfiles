@@ -119,7 +119,7 @@ require("lazy").setup({
   { "bronson/vim-trailing-whitespace" },
 
   -- コメントアウトの効率化
-  { "tomtom/tcomment_vim" },
+  { "numToStr/Comment.nvim" },
 
   -- ファイル検索 (fzf 本体)
   { "junegunn/fzf", build = "./install --all" },
@@ -195,6 +195,8 @@ require('lualine').setup({
 })
 
 require("ibl").setup()
+
+require('Comment').setup()
 
 -- LSP 設定
 local lspconfig = require("lspconfig")
