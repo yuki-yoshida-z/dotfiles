@@ -180,7 +180,7 @@ require("lazy").setup({
     end
   }
 })
-
+vim.g.sonokai_transparent_background = false
 vim.cmd("colorscheme sonokai")
 
 -- LSP 設定
