@@ -64,6 +64,12 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*.jbuilder",
   command = "set filetype=ruby",
 })
+-- njkファイルをnunjucksとして認識させる
+vim.filetype.add({
+  extension = {
+    njk = 'jinja',
+  },
+})
 
 -- nvim-treeのカラーカスタマイズ
 vim.api.nvim_create_autocmd("ColorScheme", {
@@ -98,7 +104,7 @@ require("lazy").setup({
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
-          "lua", "ruby", "javascript", "typescript", "html", "css", "vue", "bash", "go", "java", "json", "yaml", "markdown", "nginx", "pug", "python", "scala", "scss", "slim", "sql", "terraform", "xml"
+          "lua", "ruby", "javascript", "typescript", "html", "css", "vue", "bash", "go", "java", "json", "yaml", "markdown", "nginx", "pug", "python", "scala", "scss", "slim", "sql", "terraform", "xml", "jinja"
        },
         highlight = { enable = true },
         indent = { enable = true },

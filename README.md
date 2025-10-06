@@ -17,6 +17,9 @@ mac用Dotfileリポジトリ。
 1. fzfのインストール
 1. ripgrepのインストール
 1. batのインストール
+1. tree-sitterのインストール
+1. tree-sitter-cliのインストール
+1. pip install pylatexenc
 1. neovimのインストール
 1. 本リポジトリをクローン
 1. シェル実行
