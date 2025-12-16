@@ -235,6 +235,7 @@ require("nvim-tree").setup({
 local servers = { "solargraph", "ts_ls", "html", "cssls", "terraformls" }
 for _, server in ipairs(servers) do
   vim.lsp.config(server, {})
+  vim.lsp.enable({ server })
 end
 
 -- nvim-cmp
