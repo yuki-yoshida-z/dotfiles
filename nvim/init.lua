@@ -67,7 +67,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 -- njkファイルをnunjucksとして認識させる
 vim.filetype.add({
   extension = {
-    njk = 'jinja',
+    njk = 'html',
   },
 })
 
@@ -104,9 +104,12 @@ require("lazy").setup({
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
-          "lua", "ruby", "javascript", "typescript", "html", "css", "vue", "bash", "go", "java", "json", "yaml", "markdown", "nginx", "pug", "python", "scala", "scss", "slim", "sql", "terraform", "xml", "jinja"
+          "lua", "ruby", "javascript", "typescript", "html", "css", "vue", "bash", "go", "java", "json", "yaml", "markdown", "nginx", "pug", "python", "scala", "scss", "slim", "sql", "terraform", "xml"
        },
-        highlight = { enable = true },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false
+        },
         indent = { enable = true },
       })
     end
@@ -229,12 +232,10 @@ require("nvim-tree").setup({
   },
 })
 -- LSP 設定
-local lspconfig = require("lspconfig")
-lspconfig.solargraph.setup{}
-lspconfig.ts_ls.setup{}
-lspconfig.html.setup{}
-lspconfig.cssls.setup{}
-lspconfig.terraformls.setup{}
+local servers = { "solargraph", "ts_ls", "html", "cssls", "terraformls" }
+for _, server in ipairs(servers) do
+  vim.lsp.config(server, {})
+end
 
 -- nvim-cmp
 local cmp = require("cmp")
