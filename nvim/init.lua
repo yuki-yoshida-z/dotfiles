@@ -81,6 +81,29 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     vim.api.nvim_set_hl(0, "NvimTreeGitNew", { fg = "#A6E22E" })
   end,
 })
+
+-- Go用の保存時自動処理（gofmt & goimports）
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+    -- インポートの整理(goimports相当)
+    local params = vim.lsp.util.make_range_params()
+    params.context = {only = {"source.organizeImports"}}
+    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
+    for cid, res in pairs(result or {}) do
+      for _, r in pairs(res.result or {}) do
+        if r.edit then
+          vim.lsp.util.apply_workspace_edit(r.edit, "utf-8")
+        else
+          vim.lsp.buf.execute_command(r.command)
+        end
+      end
+    end
+    -- コード整形(gofmt相当)
+    vim.lsp.buf.format({async = false})
+  end,
+})
+
 -- lazy.nvim bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -232,7 +255,7 @@ require("nvim-tree").setup({
   },
 })
 -- LSP 設定
-local servers = { "solargraph", "ts_ls", "html", "cssls", "terraformls" }
+local servers = { "solargraph", "ts_ls", "html", "cssls", "terraformls", "gopls" }
 for _, server in ipairs(servers) do
   vim.lsp.config(server, {})
   vim.lsp.enable({ server })
