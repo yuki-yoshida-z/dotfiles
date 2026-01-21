@@ -36,6 +36,9 @@ vim.opt.nrformats = {}
 -- Leader をスペースに設定
 vim.g.mapleader = " "
 
+-- 外部変更を自動で読むことを許可
+vim.opt.autoread = true
+
 -- キーマッピング
 vim.keymap.set("n", "<C-k>", ":Files<CR>", { silent = true })
 vim.keymap.set("n", "<C-j>", ":Rg<CR>", { silent = true })
@@ -101,6 +104,22 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
     -- コード整形(gofmt相当)
     vim.lsp.buf.format({async = false})
+  end,
+})
+
+-- Normal モードでカーソル停止時に checktime
+vim.api.nvim_create_autocmd("CursorHold", {
+  pattern = "*",
+  callback = function()
+    vim.cmd("checktime")
+  end,
+})
+
+-- フォーカス復帰・バッファ移動時にも checktime
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+  pattern = "*",
+  callback = function()
+    vim.cmd("checktime")
   end,
 })
 
