@@ -1,3 +1,6 @@
+export PATH=/usr/local/bin/git:$PATH
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
 #ターミナル表示設定
 if [ $UID -eq 0 ]; then
   PS1="\[\033[31m\]\u:\[\033[01m\]\w\[\033[00m\]\\$ "
@@ -25,9 +28,12 @@ fd() {
 alias doc='docker'
 alias dcom='docker compose'
 alias dsy='docker-sync'
+alias make=gmake
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/opt/unzip/bin:$PATH"
 export GEMINI_API_KEY=""
 export ANTHROPIC_API_KEY=""
+export GOPATH=$(go env GOPATH)
+export PATH="$PATH:$GOPATH/bin"
