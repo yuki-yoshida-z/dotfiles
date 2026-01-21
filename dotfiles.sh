@@ -5,3 +5,4 @@ ln -sf ~/dotfiles/.bashrc ~/.bashrc
 ln -sf ~/dotfiles/.fzf.bash ~/.fzf.bash
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/nvim ~/.config/nvim
+ln -sf ~/dotfiles/gemini/settings.json ~/.gemini/settings.json
