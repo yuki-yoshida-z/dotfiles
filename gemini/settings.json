@@ -1,0 +1,92 @@
+{
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+
+  "general": {
+    "preferredEditor": "nvim",
+    "vimMode": true,
+    "checkpointing": {
+      "enabled": true
+    },
+    "sessionRetention": {
+      "enabled": true,
+      "maxAge": "14d",
+      "minRetention": "1d"
+    }
+  },
+
+  "ui": {
+    "showLineNumbers": true,
+    "showCitations": true,
+    "useFullWidth": true,
+    "dynamicWindowTitle": true
+  },
+
+  "privacy": {
+    "usageStatisticsEnabled": false
+  },
+
+  "model": {
+    "name": "gemini-2.5-pro",
+    "compressionThreshold": 0.4,
+    "maxSessionTurns": -1
+  },
+
+  "modelConfigs": {
+    "customAliases": {
+      "work": {
+        "modelConfig": {
+          "model": "gemini-2.5-pro",
+          "systemInstruction": {
+            "parts": [
+              {
+                "text": "すべての回答は日本語で行ってください。技術的な内容は簡潔かつ正確に、結論を先に示してください。不明点がある場合は推測せず質問してください。"
+              }
+            ]
+          },
+          "generateContentConfig": {
+            "temperature": 0.2,
+            "topP": 0.95
+          }
+        }
+      },
+      "fast": {
+        "modelConfig": {
+          "model": "gemini-2.5-flash",
+          "generateContentConfig": {
+            "temperature": 0.2,
+            "topP": 0.95
+          }
+        }
+      }
+    }
+  },
+
+  "tools": {
+    "sandbox": true,
+    "autoAccept": false,
+    "shell": {
+      "pager": "less -FRX",
+      "showColor": true
+    },
+    "allowed": [
+      "run_shell_command(git status)",
+      "run_shell_command(git diff)",
+      "run_shell_command(ls)",
+      "run_shell_command(cat)"
+    ]
+  },
+
+  "advanced": {
+    "excludedEnvVars": [
+      "AWS_ACCESS_KEY_ID",
+      "AWS_SECRET_ACCESS_KEY",
+      "AWS_SESSION_TOKEN",
+      "GITHUB_TOKEN",
+      "GOOGLE_APPLICATION_CREDENTIALS"
+    ]
+  }
+}
