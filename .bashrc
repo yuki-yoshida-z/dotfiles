@@ -1,3 +1,6 @@
+export PATH=/usr/local/bin/git:$PATH
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
 #ターミナル表示設定
 if [ $UID -eq 0 ]; then
   PS1="\[\033[31m\]\u:\[\033[01m\]\w\[\033[00m\]\\$ "
