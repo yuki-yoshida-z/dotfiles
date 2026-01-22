@@ -43,11 +43,6 @@ vim.opt.autoread = true
 vim.keymap.set("n", "<C-k>", ":Files<CR>", { silent = true })
 vim.keymap.set("n", "<C-j>", ":Rg<CR>", { silent = true })
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "nvim-tree: Toggle" })
-vim.keymap.set("n", "<Leader>a", ":AvanteToggle<CR>", { silent = true })
-vim.keymap.set("n", "<Leader>s", ":AvanteAsk<CR>", { silent = true })
-vim.keymap.set("n", "<leader>cl", "<cmd>AvanteSwitchProvider claude<cr>", { desc = "Switch to Claude" })
-vim.keymap.set("n", "<leader>ge", "<cmd>AvanteSwitchProvider gemini<cr>", { desc = "Switch to Gemini" })
-vim.keymap.set("n", "<leader>cle", "<cmd>AvanteClear<cr>", { desc = "AvanteClear executed" })
 
 -- プラグイン設定
 vim.g.fzf_layout = { down = "40%" }
@@ -206,50 +201,6 @@ require("lazy").setup({
 
   -- Copilot
   { "github/copilot.vim" },
-
-  -- Avante
-  {
-    "yetone/avante.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      {
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = { file_types = { "Avante" } },
-        ft = { "Avante" },
-      },
-    },
-    build = "make",
-    config = function()
-      require("avante").setup({
-        -- providerは各端末毎に設定すること
-        -- provider = "copilot",
-        provider = "gemini",
-        providers = {
-          gemini = {
-            api_key = os.getenv("GEMINI_API_KEY"),
-            endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
-            model = "gemini-2.0-flash"
-          },
-          claude = {
-            name = "claude",
-            endpoint = "https://api.anthropic.com",
-            api_key = os.getenv("ANTHROPIC_API_KEY"),
-            model = "claude-3-haiku-20240307",
-            headers = {
-              ["anthropic-version"] = "2023-06-01",
-            },
-            extra_request_body = {
-              temperature = 0.2,
-              max_tokens = 4096
-            }
-          }
-        }
-      })
-    end
-  }
 })
 vim.g.sonokai_transparent_background = false
 vim.cmd("colorscheme sonokai")
