@@ -6,3 +6,4 @@ ln -sf ~/dotfiles/.fzf.bash ~/.fzf.bash
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/gemini/settings.json ~/.gemini/settings.json
+ln -sf ~/dotfiles/codex/config.toml ~/.codex/config.toml
