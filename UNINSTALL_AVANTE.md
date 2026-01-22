@@ -43,8 +43,8 @@ rm -rf ~/.local/state/nvim/avante
 このPRでは以下の変更を行いました:
 
 1. **nvim/init.lua**から削除:
-   - avante.nvimのキーマッピング (5行)
-   - avante.nvimのプラグイン設定 (42行)
+   - avante.nvimのキーマッピング
+   - avante.nvimのプラグイン設定
 
 2. **.bashrc**から削除:
    - `GEMINI_API_KEY` 環境変数
