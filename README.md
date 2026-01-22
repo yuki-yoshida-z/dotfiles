@@ -21,6 +21,8 @@ mac用Dotfileリポジトリ。
 1. tree-sitter-cliのインストール
 1. pip install pylatexenc
 1. neovimのインストール
+1. codex cliのインストール
+1. gemini cliのインストール
 1. 本リポジトリをクローン
 1. シェル実行
 
@@ -84,13 +86,13 @@ nvim上で:Copilot setupを実行し、GitHubの認証を行う
 ```
 brew install codex
 ```
-※2026年1月現在の方法です。実行時には[codex公式リポジトリ](https://github.com/meistrari/codex-cli)を確認してください。
+※2026年1月現在の方法です。実際の手順はcodex公式を確認してください。
 
 #### gemini cliのインストール
 ```
 brew install gemini-cli
 ```
-※2026年1月現在の方法です。実行時には[gemini-cli公式リポジトリ](https://github.com/meistrari/gemini-cli)を確認してください。
+※2026年1月現在の方法です。実際の手順はgemini公式を確認してください。
 
 ## Dotfilesの適用
 上記のパッケージをインストール後に以下を実装
