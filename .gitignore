@@ -1,2 +1,8 @@
 nvim/dein/*
 *.DS_Store
+.bash_profile.local
+.bashrc.local
+.gitconfig.local
+codex/config.toml.local
+gemini/settings.json.local
+claude/settings.json.local

@@ -12,14 +12,3 @@ model = "gpt-5.2-codex"
 # The temperature to use for the model.
 # A higher temperature will result in more creative but less predictable results.
 temperature = 0.4
-
-# The user's name to use for the commit message.
-# If not set, it will use the GIT_AUTHOR_NAME environment variable.
-user_name = "yoshida_y"
-
-# The user's email to use for the commit message.
-# If not set, it will use the GIT_AUTHOR_EMAIL environment variable.
-user_email = ""
-
-[projects."/Users/yoshida_y/dotfiles"]
-trust_level = "trusted"

@@ -1,10 +1,4 @@
 {
-  "security": {
-    "auth": {
-      "selectedType": "oauth-personal"
-    }
-  },
-
   "general": {
     "preferredEditor": "nvim",
     "vimMode": true,

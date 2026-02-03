@@ -35,3 +35,6 @@ export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/opt/unzip/bin:$PATH"
 export GOPATH=$(go env GOPATH)
 export PATH="$PATH:$GOPATH/bin"
+if [ -f ~/.bashrc.local ]; then
+  . ~/.bashrc.local
+fi

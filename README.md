@@ -99,3 +99,33 @@ brew install gemini-cli
 ```
 sh dotfiles.sh
 ```
+
+## .localファイルの運用（個人/端末固有の設定）
+このリポジトリは公開用テンプレを維持し、個人情報や端末固有の設定は`*.local`に分離して管理する。`*.local`はGit管理外で、存在する場合のみ反映される。
+
+### 対象となる`.local`ファイル
+- `~/.bash_profile.local`（`.bash_profile`から読み込まれる）
+- `~/.bashrc.local`（`.bashrc`から読み込まれる）
+- `~/.gitconfig.local`（`.gitconfig`から`include`で読み込まれる）
+- `~/.codex/config.toml`（`codex/config.toml` + `codex/config.toml.local`を結合）
+- `~/.gemini/settings.json`（`gemini/settings.json` + `gemini/settings.json.local`を結合）
+- `~/.claude/settings.json`（`claude/settings.json` + `claude/settings.json.local`を結合）
+
+### 設定手順
+1. 必要に応じて、以下の`.local`ファイルを作成する（例）。
+   - `~/dotfiles/.bash_profile.local`
+   - `~/dotfiles/.bashrc.local`
+   - `~/dotfiles/.gitconfig.local`
+   - `~/dotfiles/codex/config.toml.local`
+   - `~/dotfiles/gemini/settings.json.local`
+   - `~/dotfiles/claude/settings.json.local`
+2. `sh dotfiles.sh` を実行する。  
+   - `.local`が存在する場合のみ、シンボリックリンクまたは結合ファイルが生成される。
+   - 端末ごとに不要なツールがある場合は `.local` を置かなければ何もしない。
+
+### 例: Gitのユーザー情報を`.gitconfig.local`へ
+```
+[user]
+  name = YOUR_NAME
+  email = YOUR_EMAIL
+```
