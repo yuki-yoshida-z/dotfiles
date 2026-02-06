@@ -95,7 +95,30 @@ brew install gemini-cli
 ※2026年1月現在の方法です。実際の手順はgemini公式を確認してください。
 
 ## Dotfilesの適用
-上記のパッケージをインストール後に以下を実装
+上記のパッケージをインストール後に以下を実行
+
+**注意:** makeコマンドはGNU Make（gmake）を使用してください。Homebrewでgitと共にインストールされます。
+
+### セットアップ手順
+
+1. ローカル設定ファイルを作成
+```
+make local-setup
+```
+
+2. `~/.gitconfig.local`を編集してGitのユーザー情報を設定
+```
+# ~/.gitconfig.local を開いて編集
+# user.name と user.email を設定
+```
+
+3. Dotfilesを適用
+```
+make init
+```
+
+### 従来の方法
 ```
 sh dotfiles.sh
 ```
+※ 今後、段階的にmakeで構築できるようにする予定です。
