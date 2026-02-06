@@ -33,15 +33,15 @@ init:
 		exit 1; \
 	fi
 	@echo "Setting up dotfiles..."
-	ln -sf $(DOTFILES_DIR)/.vimrc $(HOME)/.vimrc
-	ln -sf $(DOTFILES_DIR)/.bash_profile $(HOME)/.bash_profile
-	ln -sf $(DOTFILES_DIR)/.bashrc $(HOME)/.bashrc
-	ln -sf $(DOTFILES_DIR)/.fzf.bash $(HOME)/.fzf.bash
+	# ln -sf $(DOTFILES_DIR)/.vimrc $(HOME)/.vimrc
+	# ln -sf $(DOTFILES_DIR)/.bash_profile $(HOME)/.bash_profile
+	# ln -sf $(DOTFILES_DIR)/.bashrc $(HOME)/.bashrc
+	# ln -sf $(DOTFILES_DIR)/.fzf.bash $(HOME)/.fzf.bash
 	ln -sf $(DOTFILES_DIR)/.gitconfig $(HOME)/.gitconfig
-	mkdir -p $(HOME)/.config
-	ln -sf $(DOTFILES_DIR)/nvim $(HOME)/.config/nvim
-	mkdir -p $(HOME)/.gemini
-	ln -sf $(DOTFILES_DIR)/gemini/settings.json $(HOME)/.gemini/settings.json
-	mkdir -p $(HOME)/.codex
-	ln -sf $(DOTFILES_DIR)/codex/config.toml $(HOME)/.codex/config.toml
+	# mkdir -p $(HOME)/.config
+	# ln -sf $(DOTFILES_DIR)/nvim $(HOME)/.config/nvim
+	# mkdir -p $(HOME)/.gemini
+	# ln -sf $(DOTFILES_DIR)/gemini/settings.json $(HOME)/.gemini/settings.json
+	# mkdir -p $(HOME)/.codex
+	# ln -sf $(DOTFILES_DIR)/codex/config.toml $(HOME)/.codex/config.toml
 	@echo "Dotfiles setup complete!"
