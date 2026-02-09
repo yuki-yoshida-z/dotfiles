@@ -21,6 +21,8 @@ if [ -z "$GIT_NAME" ] || [ -z "$GIT_EMAIL" ]; then
   exit 1
 fi
 
+mkdir -p ~/.config ~/.gemini ~/.codex
+
 ln -sf ~/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/.bash_profile ~/.bash_profile
 ln -sf ~/dotfiles/.bashrc ~/.bashrc
