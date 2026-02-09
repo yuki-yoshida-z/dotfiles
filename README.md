@@ -24,6 +24,9 @@ mac用Dotfileリポジトリ。
 1. codex cliのインストール
 1. gemini cliのインストール
 1. 本リポジトリをクローン
+1. Brewfileでbrew bundle
+1. local-setupでlocalファイル作成
+1. Brewfile.localでbrew bundle
 1. シェル実行
 
 ## 環境構築までに必要なパッケージ
@@ -101,27 +104,38 @@ brew install gemini-cli
 
 ### セットアップ手順
 
-1. ローカル設定ファイルを作成
+1. Homebrewパッケージを適用（共有分）
+```
+brew bundle --file ~/dotfiles/Brewfile
+```
+
+2. ローカル設定ファイルを作成
 ```
 make local-setup
 ```
 
-2. `~/dotfiles/.gitconfig.local`を編集してGitのユーザー情報を設定
+3. `~/dotfiles/.gitconfig.local`を編集してGitのユーザー情報を設定
 ```
 # ~/dotfiles/.gitconfig.local を開いて編集
 # user.name と user.email を設定
 ```
 
-3. 端末固有のbash設定を必要に応じて編集
+4. 端末固有のbash設定を必要に応じて編集
 ```
 # ~/dotfiles/.bashrc.local を開いて編集
 # 端末固有のPATHやgcloudの設定など
 ```
 
-4. Dotfilesを適用
+5. Dotfilesを適用
 ```
 make init
 ```
+
+6. Homebrewパッケージを適用（端末固有分）
+```
+[ -f ~/dotfiles/.Brewfile.local ] && brew bundle --file ~/dotfiles/.Brewfile.local
+```
+※ `~/dotfiles/.Brewfile.local` は端末固有用で、リポジトリでは管理しません。
 
 ### 従来の方法
 ```
