@@ -1,6 +1,5 @@
-[user]
-	name = yuki-yoshida-z
-	email = yoshida_y@zihuatanejo.jp
+[include]
+	path = ~/.gitconfig.local
 [alias]
 	st = status
 	br = branch
