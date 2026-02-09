@@ -22,14 +22,4 @@ user_name = "yoshida_y"
 user_email = ""
 personality = "pragmatic"
 
-[projects."/Users/yoshida_y/dotfiles"]
-trust_level = "trusted"
 
-[projects."/Users/yoshida_y/projects/terraform-aws"]
-trust_level = "trusted"
-
-[projects."/Users/yoshida_y/projects/ses-router"]
-trust_level = "trusted"
-
-[projects."/Users/yoshida_y/projects/billing-notification"]
-trust_level = "trusted"
