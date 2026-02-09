@@ -43,6 +43,7 @@ vim.opt.autoread = true
 vim.keymap.set("n", "<C-k>", ":Files<CR>", { silent = true })
 vim.keymap.set("n", "<C-j>", ":Rg<CR>", { silent = true })
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "nvim-tree: Toggle" })
+vim.keymap.set("n", "<leader>a", "<cmd>NvimTreeFocus<cr>", { desc = "nvim-tree: Focus" })
 
 -- プラグイン設定
 vim.g.fzf_layout = { down = "40%" }

@@ -122,3 +122,16 @@ make init
 sh dotfiles.sh
 ```
 ※ 今後、段階的にmakeで構築できるようにする予定です。
+
+## Gitの必須設定
+`~/.gitconfig` には `~/.gitconfig.local` を読み込む `include` が入っている前提です。  
+`dotfiles.sh` 実行前に `~/.gitconfig.local` を作成し、`user.name` と `user.email` を必ず設定してください。
+
+例:
+```
+cat <<'EOF' > ~/.gitconfig.local
+[user]
+  name = Your Name
+  email = you@example.com
+EOF
+```
