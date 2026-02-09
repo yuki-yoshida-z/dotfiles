@@ -11,5 +11,4 @@ alias nvimf='nvim $(fzff)'
 #Docker-alias
 alias doc='docker'
 alias dcom='docker compose'
-alias dsy='docker-sync'
 alias make=gmake

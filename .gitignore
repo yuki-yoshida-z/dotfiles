@@ -1,3 +1,4 @@
 nvim/dein/*
 *.DS_Store
 .gitconfig.local
+.bashrc.local

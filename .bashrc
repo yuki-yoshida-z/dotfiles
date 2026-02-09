@@ -9,3 +9,6 @@ if [ -d "$HOME/.bashrc.d" ]; then
     [ -f "$f" ] && . "$f"
   done
 fi
+
+# 端末固有の設定は ~/.bashrc.local に置く
+[ -f "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"

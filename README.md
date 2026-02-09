@@ -106,13 +106,19 @@ brew install gemini-cli
 make local-setup
 ```
 
-2. `~/.gitconfig.local`を編集してGitのユーザー情報を設定
+2. `~/dotfiles/.gitconfig.local`を編集してGitのユーザー情報を設定
 ```
-# ~/.gitconfig.local を開いて編集
+# ~/dotfiles/.gitconfig.local を開いて編集
 # user.name と user.email を設定
 ```
 
-3. Dotfilesを適用
+3. 端末固有のbash設定を必要に応じて編集
+```
+# ~/dotfiles/.bashrc.local を開いて編集
+# 端末固有のPATHやgcloudの設定など
+```
+
+4. Dotfilesを適用
 ```
 make init
 ```
