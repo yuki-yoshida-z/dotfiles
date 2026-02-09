@@ -20,6 +20,6 @@ user_name = "yoshida_y"
 # The user's email to use for the commit message.
 # If not set, it will use the GIT_AUTHOR_EMAIL environment variable.
 user_email = ""
+personality = "pragmatic"
 
-[projects."/Users/yoshida_y/dotfiles"]
-trust_level = "trusted"
+
