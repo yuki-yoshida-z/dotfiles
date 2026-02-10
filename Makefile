@@ -59,7 +59,6 @@ init:
 	ln -sf $(DOTFILES_DIR)/.fzf.bash $(HOME)/.fzf.bash
 	ln -sf $(DOTFILES_DIR)/.gitconfig $(HOME)/.gitconfig
 	ln -sf $(GITCONFIG_LOCAL_SRC) $(GITCONFIG_LOCAL)
-	# ln -sf $(DOTFILES_DIR)/.vimrc $(HOME)/.vimrc
 	# mkdir -p $(HOME)/.config
 	# ln -sf $(DOTFILES_DIR)/nvim $(HOME)/.config/nvim
 	# mkdir -p $(HOME)/.gemini
