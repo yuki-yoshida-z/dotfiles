@@ -66,7 +66,7 @@ make init
 ※ `~/dotfiles/.Brewfile.local` は端末固有用で、リポジトリでは管理しません。
 
 ## Terminal.appのプロファイル適用
-Terminal.appのUIから`terminal-2026.terminal`ファイルをインポートして適用する。
+Terminal.appのUIから`terminal-2026.terminal`ファイルをインポートして適用する。<br>
 ※ macOSのUIはアップデートで変わる可能性があるため、2026年2月10日時点の手順を記載。
 
 ### インポート手順（2026年2月10日時点）
