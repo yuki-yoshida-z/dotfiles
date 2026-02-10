@@ -3,141 +3,95 @@ mac用Dotfileリポジトリ。
 開発環境構築時の効率化が目的。   
 随時更新の予定。
 
-## インストール後に設定されるもの
-- linuxコマンドのalias
-- Gitコマンドのalias
-- Dockerコマンドのalias
-- neovimの設定
+## Dotfile管理していないもの
+- dockerのインストール(Docker Desktopを使用しているため)
+- aws cliのインストール(brew非推奨なので)
 
 ## 開発環境導入の大まかな手順
+1. Xcode Command Line Toolsのインストール
 1. Homebrewのインストール
-1. anyenvのインストール
-1. ターミナルのカラー設定
-1. ターミナルのフォント設定
-1. fzfのインストール
-1. ripgrepのインストール
-1. batのインストール
-1. tree-sitterのインストール
-1. tree-sitter-cliのインストール
-1. pip install pylatexenc
-1. neovimのインストール
-1. codex cliのインストール
-1. gemini cliのインストール
 1. 本リポジトリをクローン
-1. シェル実行
+1. Brewfileでbrew bundle
+1. Terminal.appのプロファイル適用（必要なら）
+1. local-setupでlocalファイル作成
+1. 各localファイルを編集
+1. make init
 
-## 環境構築までに必要なパッケージ
-各公式ドキュメントを参照してインストールする
-### Homebrewのインストール
-[Homebrewサイト](https://brew.sh/index_ja)
+## セットアップ手順
 
-### anyenvのインストール
-[anyenv github](https://github.com/anyenv/anyenv)
-
-#### anyenvプラグインのインストール
+1. Xcode Command Line Toolsをインストール
 ```
-# ディレクトリ作成
-$ mkdir -p ~/.anyenv/plugins
-
-# anyenv-update
-# anyenv updateコマンドでanyenvで入れた**env系の全てをアップデートしてくれるプラグイン
-$ git clone https://github.com/znz/anyenv-update.git ~/.anyenv/plugins/anyenv-update
-
-# anyenv-git
-# anyenv gitコマンドでanyenvで入れた**env系の全てのgitコマンドを実行するプラグイン
-$ git clone https://github.com/znz/anyenv-git.git ~/.anyenv/plugins/anyenv-git
+xcode-select --install
 ```
 
-### ターミナルのカラー設定
-Proを使用。  
-不透明度は95%に設定する。
-### ターミナルのフォント設定
-font-jetbrains-mono-nerd-fontをinstallしてターミナルの設定でフォントを選択する
+2. Homebrewをインストール
 
-```
-brew install --cask font-jetbrains-mono-nerd-font
-```
-### fzfのインストール
-```
-brew install fzf
+3. 本リポジトリをクローン
 
-(brew --prefix)/opt/fzf/install
+4. Homebrewパッケージを適用（共有分）
+```
+brew bundle --file ~/dotfiles/Brewfile
 ```
 
-###  ripgrepのインストール
+5. Terminal.appのプロファイルを適用
 ```
-brew install ripgrep
+# GUIで terminal-2026.terminal をインポートして使用
+# 具体的な手順は「Terminal.appのプロファイル適用」を参照
 ```
 
-###  batのインストール
-```
-brew install bat
-```
-### neovimのインストール
-[neovim公式](https://neovim.io/)  
-[neovim git](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-```
-brew install neovim
-```
-#### copilotの設定
-nvim上で:Copilot setupを実行し、GitHubの認証を行う
-
-#### codex cliのインストール
-```
-brew install codex
-```
-※2026年1月現在の方法です。実際の手順はcodex公式を確認してください。
-
-#### gemini cliのインストール
-```
-brew install gemini-cli
-```
-※2026年1月現在の方法です。実際の手順はgemini公式を確認してください。
-
-## Dotfilesの適用
-上記のパッケージをインストール後に以下を実行
-
-**注意:** makeコマンドはGNU Make（gmake）を使用してください。Homebrewでgitと共にインストールされます。
-
-### セットアップ手順
-
-1. ローカル設定ファイルを作成
+6. ローカル設定ファイルを作成
 ```
 make local-setup
 ```
 
-2. `~/dotfiles/.gitconfig.local`を編集してGitのユーザー情報を設定
+7. `~/dotfiles/.gitconfig.local`を編集してGitのユーザー情報を設定
 ```
 # ~/dotfiles/.gitconfig.local を開いて編集
 # user.name と user.email を設定
 ```
 
-3. 端末固有のbash設定を必要に応じて編集
+8. 端末固有のbash設定を必要に応じて編集
 ```
 # ~/dotfiles/.bashrc.local を開いて編集
 # 端末固有のPATHやgcloudの設定など
 ```
 
-4. Dotfilesを適用
+9. 端末固有のHomebrewパッケージを必要に応じて編集
+```
+# ~/dotfiles/.Brewfile.local を開いて編集
+```
+
+10. Dotfilesを適用
 ```
 make init
 ```
 
-### 従来の方法
+11. Homebrewパッケージを適用（端末固有分）
 ```
-sh dotfiles.sh
+[ -f ~/dotfiles/.Brewfile.local ] && brew bundle --file ~/dotfiles/.Brewfile.local
 ```
-※ 今後、段階的にmakeで構築できるようにする予定です。
+※ `~/dotfiles/.Brewfile.local` は端末固有用で、リポジトリでは管理しません。
 
-## Gitの必須設定
-`~/.gitconfig` には `~/.gitconfig.local` を読み込む `include` が入っている前提です。  
-`dotfiles.sh` 実行前に `~/.gitconfig.local` を作成し、`user.name` と `user.email` を必ず設定してください。
 
-例:
-```
-cat <<'EOF' > ~/.gitconfig.local
-[user]
-  name = Your Name
-  email = you@example.com
-EOF
-```
+## Terminal.appのプロファイル適用
+Terminal.appのUIから`terminal-2026.terminal`ファイルをインポートして適用する。
+※ macOSのUIはアップデートで変わる可能性があるため、2026年2月10日時点の手順を記載。
+
+### インポート手順（2026年2月10日時点）
+1. Terminal.app を開く
+1. `Terminal > 設定...` を開く
+1. `プロファイル` タブを選択
+1. `アクション`（歯車アイコン）メニューから `読み込む` を選び、`terminal-2026.terminal` を指定  
+   もしくは Finder から `terminal-2026.terminal` をプロファイル一覧へドラッグ&ドロップ
+
+### 既定プロファイルの設定（任意）
+1. `Terminal > 設定...` → `一般` タブ
+1. 「起動時に開く」で `プロファイルを指定` を選び、インポートしたプロファイルを選択
+1. `プロファイル` タブで対象プロファイルを選び、`デフォルト` をクリック
+
+
+### copilotの設定
+nvim上で:Copilot setupを実行し、GitHubの認証を行う
+
+
+

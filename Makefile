@@ -5,6 +5,7 @@ GITCONFIG_LOCAL := $(HOME)/.gitconfig.local
 GITCONFIG_LOCAL_SRC := $(DOTFILES_DIR)/.gitconfig.local
 BASHRC_LOCAL := $(HOME)/.bashrc.local
 BASHRC_LOCAL_SRC := $(DOTFILES_DIR)/.bashrc.local
+BREWFILE_LOCAL := $(DOTFILES_DIR)/.Brewfile.local
 
 local-setup:
 	@if [ -f $(GITCONFIG_LOCAL_SRC) ]; then \
@@ -24,6 +25,12 @@ local-setup:
 	else \
 		cp bashrc.local.example $(BASHRC_LOCAL_SRC); \
 		echo "Created $(BASHRC_LOCAL_SRC) from bashrc.local.example"; \
+	fi
+	@if [ -f $(BREWFILE_LOCAL) ]; then \
+		echo "$(BREWFILE_LOCAL) already exists. Skipping creation."; \
+	else \
+		printf "# Local-only Homebrew packages\n" > $(BREWFILE_LOCAL); \
+		echo "Created $(BREWFILE_LOCAL)"; \
 	fi
 
 init:
@@ -52,7 +59,6 @@ init:
 	ln -sf $(DOTFILES_DIR)/.fzf.bash $(HOME)/.fzf.bash
 	ln -sf $(DOTFILES_DIR)/.gitconfig $(HOME)/.gitconfig
 	ln -sf $(GITCONFIG_LOCAL_SRC) $(GITCONFIG_LOCAL)
-	# ln -sf $(DOTFILES_DIR)/.vimrc $(HOME)/.vimrc
 	# mkdir -p $(HOME)/.config
 	# ln -sf $(DOTFILES_DIR)/nvim $(HOME)/.config/nvim
 	# mkdir -p $(HOME)/.gemini
