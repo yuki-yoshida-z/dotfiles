@@ -65,6 +65,31 @@ make init
 ```
 ※ `~/dotfiles/.Brewfile.local` は端末固有用で、リポジトリでは管理しません。
 
+## 言語ランタイムのインストール（anyenv）
+anyenv導入済み前提でRuby/Node.jsを入れる。
+
+1. anyenvの初期化
+```
+anyenv install --init
+exec $SHELL -l
+```
+
+2. rbenv/nodenvをインストール
+```
+anyenv install rbenv
+anyenv install nodenv
+exec $SHELL -l
+```
+
+3. Ruby/Node.jsをインストール（例）
+```
+rbenv install 3.3.6
+rbenv global 3.3.6
+
+nodenv install 20.11.1
+nodenv global 20.11.1
+```
+
 ## Terminal.appのプロファイル適用
 Terminal.appのUIから`terminal-2026.terminal`ファイルをインポートして適用する。<br>
 ※ macOSのUIはアップデートで変わる可能性があるため、2026年2月10日時点の手順を記載。
