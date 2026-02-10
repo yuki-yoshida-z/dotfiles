@@ -1,4 +1,4 @@
-.PHONY: local-setup init brew-check
+.PHONY: local-setup init brew-check codex-config
 
 local-setup:
 	@./scripts/local-setup.sh
@@ -8,3 +8,6 @@ init:
 
 brew-check:
 	@./scripts/brewfile-check.sh
+
+codex-config:
+	@./scripts/codex-config.sh

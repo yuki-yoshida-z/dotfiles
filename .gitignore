@@ -3,3 +3,4 @@ nvim/dein/*
 .gitconfig.local
 .bashrc.local
 .Brewfile.local
+codex/config.toml

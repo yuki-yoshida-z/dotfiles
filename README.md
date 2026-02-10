@@ -11,3 +11,4 @@ mac用Dotfileリポジトリ。
 - セットアップ手順: `docs/SETUP.md`
 - 運用手順: `docs/OPERATIONS.md`
 - Neovim: `docs/NVIM.md`
+- AI Agent: `docs/AI_AGENT.md`
