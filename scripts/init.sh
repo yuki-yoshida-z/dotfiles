@@ -30,6 +30,7 @@ if [ -d "$HOME/.bashrc.d" ] && [ ! -L "$HOME/.bashrc.d" ]; then
 fi
 ln -sfn "$DOTFILES_DIR/bashrc.d" "$HOME/.bashrc.d"
 ln -sf "$DOTFILES_DIR/.fzf.bash" "$HOME/.fzf.bash"
+ln -sf "$DOTFILES_DIR/.bashrc.local" "$HOME/.bashrc.local"
 ln -sf "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$GITCONFIG_LOCAL_SRC" "$GITCONFIG_LOCAL"
 mkdir -p "$HOME/.config"
