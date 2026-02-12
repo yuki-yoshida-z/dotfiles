@@ -18,3 +18,16 @@ AI Agentは端末によって使用可否が異なるため、インストール
 ## Gemini
 `gemini/settings.json`は端末固有情報がほぼないため、共有設定としてこのリポジトリで管理する。<br>
 端末固有情報が増えた際には、設定情報の分割を実装する。
+
+## Claude
+### 共有設定
+`claude/settings.json`に記載する。<br>
+モデル設定は端末固有のため、`model`フィールドは含めず環境変数で管理する。
+
+### 端末固有設定
+モデル設定は環境変数`ANTHROPIC_MODEL`で管理する。<br>
+`.bashrc.local`に以下の形式で記載する：
+```bash
+export ANTHROPIC_MODEL="vertex/claude-3-5-sonnet-v2@20241022"
+```
+`.bashrc.local`はGit管理対象外。

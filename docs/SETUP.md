@@ -7,6 +7,7 @@ AIエージェントの設定は`docs/AI_AGENT.md`を参照する。
 1. Homebrewのインストール
 1. 本リポジトリをクローン
 1. Brewfileでbrew bundle
+1. Homebrewのbashをデフォルトシェルに設定
 1. Terminal.appのプロファイル適用
 1. local-setupでlocalファイル作成
 1. 各localファイルを編集
@@ -27,40 +28,50 @@ xcode-select --install
 brew bundle --file ~/dotfiles/Brewfile
 ```
 
-5. Terminal.appのプロファイルを適用
+5. Homebrewのbashをデフォルトシェルに設定
+```
+# /etc/shellsにHomebrewのbashを追加
+sudo sh -c 'echo /opt/homebrew/bin/bash >> /etc/shells'
+
+# デフォルトシェルを変更
+chsh -s /opt/homebrew/bin/bash
+```
+変更後、ターミナルを再起動してください。bash-completion@2はBash 4.2以降が必要なため、macOSデフォルトのbash 3.2では動作しません。
+
+6. Terminal.appのプロファイルを適用
 ```
 # GUIで terminal-2026.terminal をインポートして使用
 # 具体的な手順は「Terminal.appのプロファイル適用」を参照
 ```
 
-6. ローカル設定ファイルを作成
+7. ローカル設定ファイルを作成
 ```
 make local-setup
 ```
 
-7. `~/dotfiles/.gitconfig.local`を編集してGitのユーザー情報を設定
+8. `~/dotfiles/.gitconfig.local`を編集してGitのユーザー情報を設定
 ```
 # ~/dotfiles/.gitconfig.local を開いて編集
 # user.name と user.email を設定
 ```
 
-8. 端末固有のbash設定を必要に応じて編集
+9. 端末固有のbash設定を必要に応じて編集
 ```
 # ~/dotfiles/.bashrc.local を開いて編集
 # 端末固有のPATHやgcloudの設定など
 ```
 
-9. 端末固有のHomebrewパッケージを必要に応じて編集
+10. 端末固有のHomebrewパッケージを必要に応じて編集
 ```
 # ~/dotfiles/.Brewfile.local を開いて編集
 ```
 
-10. Dotfilesを適用
+11. Dotfilesを適用
 ```
 make init
 ```
 
-11. Homebrewパッケージを適用（端末固有分）
+12. Homebrewパッケージを適用（端末固有分）
 ```
 [ -f ~/dotfiles/.Brewfile.local ] && brew bundle --file ~/dotfiles/.Brewfile.local
 ```

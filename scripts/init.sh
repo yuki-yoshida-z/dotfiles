@@ -30,6 +30,11 @@ if [ -d "$HOME/.bashrc.d" ] && [ ! -L "$HOME/.bashrc.d" ]; then
 fi
 ln -sfn "$DOTFILES_DIR/bashrc.d" "$HOME/.bashrc.d"
 ln -sf "$DOTFILES_DIR/.fzf.bash" "$HOME/.fzf.bash"
+if [ -f "$HOME/.bashrc.local" ] && [ ! -L "$HOME/.bashrc.local" ]; then
+  mv "$HOME/.bashrc.local" "$HOME/.bashrc.local.bak"
+  echo "Moved existing $HOME/.bashrc.local to $HOME/.bashrc.local.bak"
+fi
+ln -sf "$DOTFILES_DIR/.bashrc.local" "$HOME/.bashrc.local"
 ln -sf "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$GITCONFIG_LOCAL_SRC" "$GITCONFIG_LOCAL"
 mkdir -p "$HOME/.config"

@@ -1,0 +1,19 @@
+{
+  "theme": "dark",
+  "autoApproval": {
+    "enabled": true,
+    "actions": [
+      "read_files",
+      "list_files",
+      "search_files",
+      "run_read_only_commands"
+    ]
+  },
+  "terminal": {
+    "syntaxHighlighting": true,
+    "fontFamily": "Menlo, Monaco, 'Courier New', monospace"
+  },
+  "history": {
+    "maxSessions": 100
+  }
+}
