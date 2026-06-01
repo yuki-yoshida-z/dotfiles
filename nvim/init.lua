@@ -201,7 +201,8 @@ require("lazy").setup({
   { "hrsh7th/cmp-cmdline" },
 
   -- Copilot
-  { "github/copilot.vim" },
+  -- NOTE: 端末によって使用可否が変わるので一旦コメントアウト
+  -- { "github/copilot.vim" },
 })
 vim.g.sonokai_transparent_background = false
 vim.cmd("colorscheme sonokai")
